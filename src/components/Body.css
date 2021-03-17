@@ -1,0 +1,44 @@
+.body-wrapper{
+    display: flex;
+    flex-direction: row;
+}
+
+
+main{
+    background-color: #fbfbfb30; 
+    flex-basis: 80%;
+    
+    text-align: center;
+}
+
+.sidebar{
+    background-color: #fbfbfb30;
+    flex-basis: 20%;
+    height: 600px;
+    margin:0;
+    margin-left: 9px;
+}
+
+.side-top-wrapper{
+    height: 380px;
+    border-bottom: 1px solid black;
+}
+
+.sidebar-navigation{
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar-navigation-element:hover{
+    background-color: #9fa9ae;
+}
+
+.sidebar-navigation-element{
+    list-style-type: none;
+    padding: 16px;
+}
+
+.sidebar-navigation-element a{
+    text-decoration: none;
+    color: #2AFCDD;
+}

@@ -1,0 +1,50 @@
+.header-wrapper{
+    background-color: #f3feffad;
+    /* opacity: 0.8; */
+}
+
+header{
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  header .logo{
+    margin-left: 9px;
+  }
+  
+  header .logo{
+    font-family:'Sigmar One', cursive;
+    text-decoration: none;
+    color: black;
+  }
+  
+  header .logo:hover{
+    color:  #2AFCDD;;
+  }
+
+  header nav{
+    display: flex;
+    justify-content: center;
+  }
+  
+  .navigation{
+    display: flex;
+    align-items: center;
+    margin: 2px 9px;
+  }
+  
+  .navigation a {
+    text-transform: uppercase;
+    text-decoration: none;
+    color: black;
+  }
+  
+  .navigation a :hover {
+   color: white;
+  }
+  
+  .navigation a li{
+    list-style-type: none;
+    margin: 9px;
+  }
