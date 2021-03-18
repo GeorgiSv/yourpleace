@@ -21,7 +21,17 @@ function getDailyTrendindArticles(){
     .catch();
 }
 
+function getPopularMovies(){
+
+    const basePictureURL = 'https://image.tmdb.org/t/p/w500/';
+
+    return fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${theMovieDbAPIToken}`)
+    .then(res => res.json())
+    .catch();
+}
+
 export default {
     getWeeklyTrendingArticles,
-    getDailyTrendindArticles
+    getDailyTrendindArticles,
+    getPopularMovies
 }

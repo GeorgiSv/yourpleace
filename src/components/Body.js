@@ -1,70 +1,58 @@
 import { Component } from "react";
 import './Body.css';
 import nasaService from '../services/dailyArticlesGetter.js'
-import SingleArticle from './SingleArticle.js'
+import SingleArticle from './Movies/SingleArticle.js'
+import { Route, Link, Switch } from 'react-router-dom';
+import TrendWeeklyMoviesFeed from './Movies/TrendWeeklyMoviesFeed.js'
+import TrendDayilyMoviesFeed from './Movies/TrendDayilyMoviesFeed.js'
+import PopularMoviesFeed from './Movies/PopularMoviesFeed.js'
+
 
 class Body extends Component {
 
     constructor(props){
         super(props)
-
-        this.state = { 
-            weeklyArticles: [],
-            dayilyArticles: []
-        }
-    }
-
-    componentDidMount() {
-        nasaService.getWeeklyTrendingArticles()
-            .then(article =>{
-                this.setState(() => ({weeklyArticles: article.results}))
-            });
-
-            nasaService.getDailyTrendindArticles()
-            .then(article =>{
-                this.setState(() => ({dayilyArticles: article.results}))
-            });
+     
     }
 
     render() {
-     
         return (
             <div className='body-wrapper section-wrapper'>
                 <main className=''>
-                    {
-                        this.state.weeklyArticles.map(a => <SingleArticle key={a.id} article={a}/>)
-                    }
-                    {
-                        this.state.dayilyArticles.map(a => <SingleArticle key={a.id} article={a}/>)
-                    }
+            <Switch>
+                   <Route exact path="/weeklytrends" component={TrendWeeklyMoviesFeed} />
+                   <Route exact path="/dayilytrends" component={TrendDayilyMoviesFeed} />
+                   <Route exact path="/popular" component={PopularMoviesFeed} />
+            </Switch>
+
                 </main>
                 <aside className='sidebar'>
                     <article className='side-top-wrapper'>
                         <ul className='sidebar-navigation'>
                             <li className='sidebar-navigation-element'>
-                                <a href='#'>
-                                    Trending movies
-                                </a>
+                                <Link to="">
+                                    What's new?
+                                </Link>
                             </li>
                             <li className='sidebar-navigation-element'>
-                                <a href='#'>
+                                <Link to="/weeklytrends">
                                      Weekly Trending movies
-                                </a>
+                                </Link>
                             </li>
                             <li className='sidebar-navigation-element'>
-                                <a href='#'>
+                                <Link to="/dayilytrends">
                                     Daily Trending movies
-                                </a>
+                                </Link>
                             </li>
                             <li className='sidebar-navigation-element'>
-                                <a href='#'>
+                                <Link to="/popular">
                                     Popular
-                                </a>
+                                </Link>
                             </li>
                             <li className='sidebar-navigation-element'>
-                                <a href='#'>
+                                <Link to="/">
                                     Other 
-                                </a>
+                                </Link>
                             </li>
                         </ul>
                     </article>

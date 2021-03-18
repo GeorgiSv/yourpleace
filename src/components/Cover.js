@@ -11,7 +11,7 @@ class Cover extends Component{
         return (
              <article className='header-cover'>
                {
-                   headings.map((e) => <h1>{e}!</h1>)
+                   headings.map((e, i) => <h1 key={i}>{e}!</h1>)
                 }
             </article>
         );

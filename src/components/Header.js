@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import './Header.css';
+import { Route, Link, Switch } from 'react-router-dom';
 
 class Header extends Component {
 
@@ -11,19 +12,19 @@ class Header extends Component {
                 <a href='#' className='logo'><h1>YOURPLASE</h1></a>
                 <nav>
                     <ul className='navigation'>
-                        <a href='#'>
+                        <Link to="/explore">
                             <li className='navigation-element'>
                                 Explore
                              </li>
-                        </a>
-                        <a href='#'><li className='navigation-element'>
+                        </Link>
+                        <Link to="/about"><li className='navigation-element'>
                             About
                         </li>
-                        </a>
-                        <a href='#'><li className='navigation-element'>
+                        </Link>
+                        <Link to="/login"><li className='navigation-element'>
                             Login
                         </li>
-                        </a>
+                        </Link>
                     </ul>
                 </nav>
             </header>
