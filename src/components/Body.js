@@ -6,6 +6,7 @@ import { Route, Link, Switch } from 'react-router-dom';
 import TrendWeeklyMoviesFeed from './Movies/TrendWeeklyMoviesFeed.js'
 import TrendDayilyMoviesFeed from './Movies/TrendDayilyMoviesFeed.js'
 import PopularMoviesFeed from './Movies/PopularMoviesFeed.js'
+import WhatsNew from './Main/WhatsNew.js'
 
 
 class Body extends Component {
@@ -20,9 +21,10 @@ class Body extends Component {
             <div className='body-wrapper section-wrapper'>
                 <main className=''>
             <Switch>
-                   <Route exact path="/weeklytrends" component={TrendWeeklyMoviesFeed} />
-                   <Route exact path="/dayilytrends" component={TrendDayilyMoviesFeed} />
-                   <Route exact path="/popular" component={PopularMoviesFeed} />
+                        <Route path="/whatsnew" component={WhatsNew}/>
+                        <Route path="/weeklytrends" component={TrendWeeklyMoviesFeed} />
+                        <Route path="/dayilytrends" component={TrendDayilyMoviesFeed} />
+                        <Route path="/popular" component={PopularMoviesFeed} />
             </Switch>
 
                 </main>
@@ -30,7 +32,7 @@ class Body extends Component {
                     <article className='side-top-wrapper'>
                         <ul className='sidebar-navigation'>
                             <li className='sidebar-navigation-element'>
-                                <Link to="">
+                                <Link to="/whatsnew">
                                     What's new?
                                 </Link>
                             </li>
@@ -56,7 +58,25 @@ class Body extends Component {
                             </li>
                         </ul>
                     </article>
-                    <article className='side-bottom-wrapper'>dsa</article>
+                    <article className='side-bottom-wrapper forum-navigation'>
+                        <ul>
+                            <Link to="/recentposts">
+                                    <li>
+                                        Recent Posts
+                                    </li>
+                             </Link>
+                             <Link to="/recentposts">
+                                    <li>
+                                        Create Posts
+                                    </li>
+                             </Link>
+                             <Link to="/recentposts">
+                                    <li>
+                                        Create Posts
+                                    </li>
+                            </Link>
+                        </ul>
+                    </article>
                 </aside>
             </div>
         );

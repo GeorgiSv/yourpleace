@@ -9,7 +9,7 @@ class Header extends Component {
         return (
           <div className='header-wrapper'>
             <header className='section-wrapper'>
-                <a href='#' className='logo'><h1>YOURPLASE</h1></a>
+                <Link to='/whatsnew' className='logo'><h1>YOURPLASE</h1></Link>
                 <nav>
                     <ul className='navigation'>
                         <Link to="/explore">
@@ -17,13 +17,15 @@ class Header extends Component {
                                 Explore
                              </li>
                         </Link>
-                        <Link to="/about"><li className='navigation-element'>
+                        <Link to="/about">
+                            <li className='navigation-element'>
                             About
-                        </li>
+                            </li>
                         </Link>
-                        <Link to="/login"><li className='navigation-element'>
+                        <Link to="/login">
+                            <li className='navigation-element'>
                             Login
-                        </li>
+                            </li>
                         </Link>
                     </ul>
                 </nav>

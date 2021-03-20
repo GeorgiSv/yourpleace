@@ -8,20 +8,25 @@ import { Route, Link, Switch } from 'react-router-dom';
 import Welcome from './components/Main/Welcome.js'
 import About from './components/Main/About.js'
 import NotFound from './components/NotFound.js'
+import Login from './components/User/Login.js'
 
 function App() {
   return (
     <div className="App">
-     <Header/>
-        <Cover />
-        <Switch>
-          <Route exact path="/" component={Welcome} />
-          <Route path="/about" component={About} />
+      <Header />
+      <Cover />
+      <Switch>
+        <Route exact path="/" component={Welcome} />
+        <Route path="/about" component={About} />
+        <Route path="/user">
+          <Route path="/login" component={Login} />
+        </Route>
+
         <Body />
 
         <Route component={NotFound} />
-     </Switch>
-     {/* <Footer /> */}
+      </Switch>
+      {/* <Footer /> */}
     </div>
   );
 }
