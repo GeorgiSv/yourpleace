@@ -1,13 +1,16 @@
 import { Component } from "react";
-import './Body.css';
-import nasaService from '../services/dailyArticlesGetter.js'
-import SingleArticle from './Movies/SingleArticle.js'
 import { Route, Link, Switch } from 'react-router-dom';
+
+import './Body.css';
+
+import WhatsNew from './Main/WhatsNew.js'
+
 import TrendWeeklyMoviesFeed from './Movies/TrendWeeklyMoviesFeed.js'
 import TrendDayilyMoviesFeed from './Movies/TrendDayilyMoviesFeed.js'
 import PopularMoviesFeed from './Movies/PopularMoviesFeed.js'
-import WhatsNew from './Main/WhatsNew.js'
 
+import CreatePost from './Forum/CreatePost.js'
+import RecentPosts from './Forum/RecentPosts.js'
 
 class Body extends Component {
 
@@ -25,6 +28,10 @@ class Body extends Component {
                         <Route path="/weeklytrends" component={TrendWeeklyMoviesFeed} />
                         <Route path="/dayilytrends" component={TrendDayilyMoviesFeed} />
                         <Route path="/popular" component={PopularMoviesFeed} />
+                        <Route path='/forum'>
+                            <Route path="/forum/createpost" component={CreatePost} />
+                            <Route path="/forum/recentposts" component={RecentPosts} />
+                        </Route>
             </Switch>
 
                 </main>
@@ -60,17 +67,17 @@ class Body extends Component {
                     </article>
                     <article className='side-bottom-wrapper forum-navigation'>
                         <ul>
-                            <Link to="/recentposts">
+                            <Link to="/forum/recentposts">
                                     <li>
                                         Recent Posts
                                     </li>
                              </Link>
-                             <Link to="/recentposts">
+                             <Link to="/forum/createpost">
                                     <li>
                                         Create Posts
                                     </li>
                              </Link>
-                             <Link to="/recentposts">
+                             <Link to="/forum/createpost">
                                     <li>
                                         Create Posts
                                     </li>

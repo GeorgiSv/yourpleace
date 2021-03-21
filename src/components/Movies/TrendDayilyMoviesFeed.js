@@ -9,7 +9,6 @@ class TrendWeeklyMoviesFeed extends Component{
 
         this.state = { 
             dayilyMovies: [],
-            // popularMovies: []
         }
     }
     
@@ -18,11 +17,6 @@ class TrendWeeklyMoviesFeed extends Component{
             .then(article =>{
                 this.setState(() => ({dayilyMovies: article.results}))
             });
-
-            // moviesService.getPopularMovies()
-            // .then(article =>{
-            //     this.setState(() => ({popularMovies: article.results}))
-            // });
     }
 
     render(){

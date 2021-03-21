@@ -9,6 +9,7 @@ import Welcome from './components/Main/Welcome.js'
 import About from './components/Main/About.js'
 import NotFound from './components/NotFound.js'
 import Login from './components/User/Login.js'
+import Register from './components/User/Register.js'
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
         <Route exact path="/" component={Welcome} />
         <Route path="/about" component={About} />
         <Route path="/user">
-          <Route path="/login" component={Login} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
         </Route>
 
         <Body />
