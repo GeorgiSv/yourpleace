@@ -10,27 +10,61 @@ import About from './components/Main/About.js'
 import NotFound from './components/NotFound.js'
 import Login from './components/User/Login.js'
 import Register from './components/User/Register.js'
+import { Component } from 'react'
+import observer from '../src/components/Tools/observer.js'
 
-function App() {
-  return (
-    <div className="App">
-      <Header />
-      <Cover />
-      <Switch>
-        <Route exact path="/" component={Welcome} />
-        <Route path="/about" component={About} />
-        <Route path="/user">
-        <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
-        </Route>
+class App extends Component {
+  constructor(props) {
+    super(props)
 
-        <Body />
+    // if (localStorage.getItem("email")) {
+    //   this.state = {
+    //     loggedIn: true,
+    //   }
+    // }
+    // else{
+    //   this.state = {
+    //     loggedIn: false,
+    //   }
+    // }
 
-        <Route component={NotFound} />
-      </Switch>
-      {/* <Footer /> */}
-    </div>
-  );
+    // observer.onLogin = this.onLogin.bind(this);
+  }
+
+  // onLogin() {
+  //   if (localStorage.getItem("email") === null) {
+  //     console.log("Null in local storage")
+  //     return;
+  //   }
+  //   console.log("Setting logged state")
+  //   this.setState({
+  //     loggedIn: true
+  //   })
+  // }
+
+  onLogout() {
+//loggedIn={this.state.loggedIn}
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Header  />
+        <Cover />
+        <Switch>
+          <Route exact path="/" component={Welcome} />
+          <Route path="/about" component={About} />
+          <Route path="/user/login" component={Login} />
+          <Route path="/user/register" component={Register} />
+
+          <Body />
+
+          <Route component={NotFound} />
+        </Switch>
+        {/* <Footer /> */}
+      </div>
+    );
+  }
 }
 
 export default App;

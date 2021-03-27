@@ -11,8 +11,8 @@ class CreatePost extends Component{
         this.state = {post:{
                         author: "",
                         datetime: "",
-                        header: "", 
-                        description: "",
+                        title: "", 
+                        text: "",
                         tags: "",
                         comments: [],
                         // {

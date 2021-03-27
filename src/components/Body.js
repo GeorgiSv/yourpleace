@@ -13,12 +13,10 @@ import Search from "./Movies/Search.js"
 import CreatePost from './Forum/CreatePost.js'
 import RecentPosts from './Forum/RecentPosts.js'
 
+import observer from '../components/Tools/observer.js'
+
 class Body extends Component {
 
-    constructor(props){
-        super(props)
-     
-    }
 
     render() {
         return (
