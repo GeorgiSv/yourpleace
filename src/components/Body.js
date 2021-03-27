@@ -8,6 +8,7 @@ import WhatsNew from './Main/WhatsNew.js'
 import TrendWeeklyMoviesFeed from './Movies/TrendWeeklyMoviesFeed.js'
 import TrendDayilyMoviesFeed from './Movies/TrendDayilyMoviesFeed.js'
 import PopularMoviesFeed from './Movies/PopularMoviesFeed.js'
+import Search from "./Movies/Search.js"
 
 import CreatePost from './Forum/CreatePost.js'
 import RecentPosts from './Forum/RecentPosts.js'
@@ -28,6 +29,7 @@ class Body extends Component {
                         <Route path="/weeklytrends" component={TrendWeeklyMoviesFeed} />
                         <Route path="/dayilytrends" component={TrendDayilyMoviesFeed} />
                         <Route path="/popular" component={PopularMoviesFeed} />
+                        <Route path="/search" component={Search} />
                         <Route path='/forum'>
                             <Route path="/forum/createpost" component={CreatePost} />
                             <Route path="/forum/recentposts" component={RecentPosts} />
@@ -59,8 +61,8 @@ class Body extends Component {
                                 </Link>
                             </li>
                             <li className='sidebar-navigation-element'>
-                                <Link to="/">
-                                    Other 
+                                <Link to="/search">
+                                    Search 
                                 </Link>
                             </li>
                         </ul>

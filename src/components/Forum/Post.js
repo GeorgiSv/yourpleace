@@ -16,11 +16,11 @@ class Post extends Component{
 
         return(
             <article>
-                <h2>{this.props.post.header}</h2>
+                <h2>{this.props.post.title}</h2>
                 <span>{this.props.post.author}</span>
                 <p>{this.props.post.datetime}</p>
                 <div className="post-text-container">
-                    <p>{this.props.post.description}</p>
+                    <p>{this.props.post.text}</p>
                 </div>
                 <div>Comments {this.props.post.comments.length}</div>
                 <Link to="">

@@ -71,22 +71,22 @@ class CreatePost extends Component{
                 <h1>CreatePost</h1>
                 <form onSubmit={this.handleSubmit.bind(this)}>
                 <h1 className="error-message">{this.state.error}</h1>
-                    <label>HEADER</label>
+                    <label>Title</label>
                     <input type="text"
                            name = "header" 
-                           value={this.state.header}
+                           value={this.state.title}
                            onChange={this.handleChange}></input>
 <br/>
                     <label>Description</label>
                     <input type="text"
                            name = "description"
-                           value={this.state.description}
+                           value={this.state.text}
                            onChange={this.handleChange}></input>
 <br/>
-                    <label>Movie related:</label>
+                    <label>Tags</label>
                     <input type="text"
                            name = "movieTitle"
-                           value={this.state.movieTitle}
+                           value={this.state.tags}
                            onChange={this.handleChange}></input>
 <br/>
                     <input type='submit'/>
