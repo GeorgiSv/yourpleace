@@ -1,13 +1,24 @@
 import { Component } from "react";
 import { Route, Link, Switch } from 'react-router-dom';
 
-class Welcome extends Component{
-    constructor(){
-        super()
+class Welcome extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            userEmail: "",
+            uid: ""
+        }
 
     }
 
-    render(){
+    componentDidMount() {
+        this.setState({
+            userEmail: localStorage.getItem("email"),
+            uid: localStorage.getItem("uid")})
+    }
+
+    render() {
 
         const style = {
             color: "white",
@@ -24,7 +35,7 @@ class Welcome extends Component{
             textAlign: "center",
         }
 
-        const spanStyle ={
+        const spanStyle = {
             color: "#2AFCDD"
         }
 
@@ -45,24 +56,41 @@ class Welcome extends Component{
 
         return (<section style={style} className="about section-wrapper">
             <h1 style={headingStyle}>Welcome to YOURPLACE</h1>
-            <article style ={welcomeArticleStyle}>
+            <article style={welcomeArticleStyle}>
                 <article>
-                    <p>Chheckout movies, articles, forum posts and more all in one - JUST YOURPLACE</p>
+                    <p>Chheckout movies, articles, forum posts and more all in one</p>
                     <p>Check us often and find new trening movies and shows</p>
                     <p>Ask, answer or just share opinion in the forum section</p>
+                    <p>JUST YOURPLACE</p>
                 </article>
                 <article>
-                    <p>In order to pleaseure yourself with all content of YOURPLACE, please login to your plrofile. If you don't have one, register now copletly free@</p>
-                   
-                   <Link style={articleLinks} to="/login">
-                        <span>Login</span>
-                   </Link>
-                   <Link style={articleLinks} to="/register">
-                        <span>Register</span>
-                   </Link>
-                   <Link style={articleLinks} to="/publiccontent">
-                        <span>Check public content</span>
-                   </Link>
+                    {this.state.userEmail ?
+                        <>
+                            <p>Hi, {this.state.userEmail}</p>
+                            <Link style={articleLinks} to="/user/profile">
+                                <span>Profile</span>
+                            </Link>
+                            <Link style={articleLinks} to="/explore/whatsnew">
+                                <span>WhatsNew</span>
+                            </Link>
+                            <Link style={articleLinks} to="/forum/recentposts">
+                                <span>Recent posts</span>
+                            </Link>
+                        </>
+                        :
+                        <>
+                            <p>In order to pleaseure yourself with all content of YOURPLACE, please login to your plrofile. If you don't have one, register now copletly free@</p>
+                            <Link style={articleLinks} to="/user/login">
+                                <span>Login</span>
+                            </Link>
+                            <Link style={articleLinks} to="/user/register">
+                                <span>Register</span>
+                            </Link>
+                            <Link style={articleLinks} to="/publiccontent">
+                                <span>Check public content</span>
+                            </Link>
+                        </>
+                    }
                 </article>
             </article>
         </section>);

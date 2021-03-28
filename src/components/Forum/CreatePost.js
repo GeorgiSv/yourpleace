@@ -5,11 +5,12 @@ import * as forumService from "../../services/forumService.js"
 
 
 class CreatePost extends Component{
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         
         this.state = {post:{
                         author: "",
+                        authorId: "",
                         datetime: "",
                         title: "", 
                         text: "",
@@ -28,6 +29,10 @@ class CreatePost extends Component{
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentDidMount(){
+
+    }
+    
     handleChange(event){
         let post = this.state.post
         post[event.target.name] = event.target.value;
@@ -51,11 +56,12 @@ class CreatePost extends Component{
         }
 
         post.datetime = new Date().toLocaleString();
+        post.author = this.props.user.email;
+        post.authorId = this.props.user.uid;
 
         console.log(post)
         forumService.addPost(this.state.post)
         this.setState({error: ""})
-
         this.state.shouldRedirectToREcentPosts = true; 
     }
 
@@ -64,6 +70,10 @@ class CreatePost extends Component{
         const shouldRedirect = this.state.shouldRedirectToREcentPosts
         if (shouldRedirect) {
             return <Redirect to="/forum/recentposts"/>
+        }
+
+        if (!this.props.user) {
+            return <Redirect to="/user/login"/>
         }
 
         return(

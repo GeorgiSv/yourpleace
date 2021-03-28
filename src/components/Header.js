@@ -2,20 +2,16 @@ import { Component } from 'react';
 import './Header.css';
 import { Route, Link, Switch } from 'react-router-dom';
 import * as firebase from '../services/firebase.js'
+import * as userService from '../services/usersService.js'
 
 class Header extends Component {
     constructor(props) {
         super(props)
-
-        this.state = {loggedIn: false}
     }
 
-    componentDidMount(){
-        
-    firebase.auth.onAuthStateChanged((user) => {
-        this.setState({loggedIn: true})
-        console.log("asddsa")
-      });
+    handleClick(){
+        userService.logout();
+        console.log("Logging out...")
     }
 
     render() {
@@ -23,10 +19,10 @@ class Header extends Component {
         return (
             <div className='header-wrapper'>
                 <header className='section-wrapper'>
-                    <Link to='/whatsnew' className='logo'><h1>YOURPLASE</h1></Link>
+                    <Link to='/' className='logo'><h1>YOURPLASE</h1></Link>
                     <nav>
                         <ul className='navigation'>
-                            <Link to="/explore">
+                            <Link to="/explore/whatsnew">
                                 <li className='navigation-element'>
                                     Explore
                              </li>
@@ -36,31 +32,29 @@ class Header extends Component {
                                     About
                             </li>
                             </Link>
-                            {this.state.loggedIn
+                            {this.props.user
                                 ?
                                 <>
-                                    <Link to="/profile">
+                                    <Link to="/user/profile">
                                         <li className='navigation-element'>
-                                            {localStorage.getItem("email")}
+                                            {this.props.user.email}
                                         </li>
                                     </Link>
-                                    <Link to="/user/logout">
                                         <li className='navigation-element'>
-                                           Logout
+                                           <button onClick={() => this.handleClick()} >Logout</button>
                                         </li>
-                                    </Link>
                                 </>
                                 :
                                 <>
                                     <Link to="/user/login">
                                         <li className='navigation-element'>
                                             Login    /
-                             </li>
+                                         </li>
                                     </Link>
                                     <Link to="/user/register">
                                         <li className='navigation-element'>
                                             Register
-                             </li>
+                                         </li>
                                     </Link>
                                 </>
                             }

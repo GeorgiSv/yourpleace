@@ -8,6 +8,10 @@ function login(email, password){
     return firebase.auth.signInWithEmailAndPassword(email, password)
 }
 
+function logout(){
+    return firebase.auth.signOut()
+}
+
 function addUserToCollection(user){
     return firebase.db.collection('users').add(user)
 }
@@ -26,6 +30,7 @@ function getUserMovies(data){
 export { 
     register,
     login,
+    logout,
     getUserMovies, 
     addUserMovies, 
     addUserToCollection}

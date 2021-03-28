@@ -23,30 +23,18 @@ class Login extends Component {
         let email = event.target.email.value
         let pass = event.target.password.value
 
-        var uid = '';
-
         userService.login(email,pass)
-        .then((res) => {
-            console.log(res.user.uid)
-            if (res.user) {
-                localStorage.setItem('email', email)
-                localStorage.setItem('isLogged', true)
-                localStorage.setItem('uid', res.user.uid)
-                //observer.onLogin();
-            }
-        })
-        .catch((err) => {
-            console.log("error: " + err.message)
-            this.setState({error: "Email or password does not match! PLease try again!"})
+            .then((res) => {
+                console.log(res.user.uid)
+            })
+            .catch((err) => {
+                console.log("error: " + err.message)
+                this.setState({error: "Email or password does not match! PLease try again!"})
         });
-
-
         
-
-        console.log("USerInfo: " + uid)
-        // if(this.state.error === ""){
-        //     this.setState({isSuccess: true})
-        // }
+        if (this.state.error === "") {
+            this.setState({isSuccess: true})
+        }
     }
 
     render() {
@@ -59,7 +47,7 @@ class Login extends Component {
         }
 
         if (this.state.isSuccess) {
-            return <Redirect to="/whatsnew" />
+            return <Redirect to="/explore/whatsnew" />
         }
 
         return (

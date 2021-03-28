@@ -16,51 +16,52 @@ import RecentPosts from './Forum/RecentPosts.js'
 import observer from '../components/Tools/observer.js'
 
 class Body extends Component {
+    constructor(props){
+        super(props)
 
+    }
 
     render() {
         return (
             <div className='body-wrapper section-wrapper'>
                 <main className=''>
-            <Switch>
-                        <Route path="/whatsnew" component={WhatsNew}/>
-                        <Route path="/weeklytrends" component={TrendWeeklyMoviesFeed} />
-                        <Route path="/dayilytrends" component={TrendDayilyMoviesFeed} />
-                        <Route path="/popular" component={PopularMoviesFeed} />
-                        <Route path="/search" component={Search} />
-                        <Route path='/forum'>
-                            <Route path="/forum/createpost" component={CreatePost} />
-                            <Route path="/forum/recentposts" component={RecentPosts} />
-                        </Route>
-            </Switch>
+                    <Switch>
+                        <Route path="/explore/whatsnew" component={WhatsNew} />
+                        <Route path="/explore/weeklytrends" component={TrendWeeklyMoviesFeed} />
+                        <Route path="/explore/dayilytrends" component={TrendDayilyMoviesFeed} />
+                        <Route path="/explore/popular" component={PopularMoviesFeed} />
+                        <Route path="/explore/search" component={Search} />
+                        <Route path="/forum/createpost" component={() => <CreatePost user={this.props.user} />} />
+                        <Route path="/forum/recentposts" component={RecentPosts} />
+                    </Switch>
 
                 </main>
                 <aside className='sidebar'>
                     <article className='side-top-wrapper'>
                         <ul className='sidebar-navigation'>
                             <li className='sidebar-navigation-element'>
-                                <Link to="/whatsnew">
+                                <Link to="/explore/whatsnew">
                                     What's new?
                                 </Link>
                             </li>
                             <li className='sidebar-navigation-element'>
-                                <Link to="/weeklytrends">
-                                     Weekly Trending movies
+                                <Link to="/explore/weeklytrends">
+                                    Weekly Trending movies
                                 </Link>
                             </li>
                             <li className='sidebar-navigation-element'>
-                                <Link to="/dayilytrends">
+                                <Link to="/explore/dayilytrends">
                                     Daily Trending movies
                                 </Link>
                             </li>
                             <li className='sidebar-navigation-element'>
-                                <Link to="/popular">
+                                <Link to="/explore/popular">
                                     Popular
                                 </Link>
                             </li>
                             <li className='sidebar-navigation-element'>
-                                <Link to="/search">
-                                    Search 
+                                <Link to="/explore/search">
+                                    Search
                                 </Link>
                             </li>
                         </ul>
@@ -68,18 +69,18 @@ class Body extends Component {
                     <article className='side-bottom-wrapper forum-navigation'>
                         <ul>
                             <Link to="/forum/recentposts">
-                                    <li>
-                                        Recent Posts
+                                <li>
+                                    Recent Posts
                                     </li>
-                             </Link>
-                             <Link to="/forum/createpost">
-                                    <li>
-                                        Create Posts
+                            </Link>
+                            <Link to="/forum/createpost">
+                                <li>
+                                    Create Posts
                                     </li>
-                             </Link>
-                             <Link to="/forum/createpost">
-                                    <li>
-                                        Create Posts
+                            </Link>
+                            <Link to="/forum/createpost">
+                                <li>
+                                    Create Posts
                                     </li>
                             </Link>
                         </ul>
