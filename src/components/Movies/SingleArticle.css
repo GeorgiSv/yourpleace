@@ -39,13 +39,16 @@
    margin-top: 99px;
 }
 
-.movie-buttons-wrapper a{
-    text-decoration: none;
+.movie-buttons-wrapper button{
+    border: none;
+    background: none;
     padding: 26px;
     color: black;
+    font-size: 16px;
 }
 
-.movie-buttons-wrapper a:hover{
+.movie-buttons-wrapper button:hover{
   border: 1px solid black;
   color: #2AFCDD;
+  cursor:pointer;
 }

@@ -1,0 +1,87 @@
+.post-wrapper{
+ display:flex;
+ flex-direction: column;
+ justify-content: center;
+}
+
+.post{
+    border: 1px solid black;
+    color: white;
+}
+
+.post h3 span{
+    color: gold;
+    right: 0;
+}
+
+.post h2{
+    color: #2AFCDD;
+}
+
+.info-post-container{
+    display: flex;
+}
+
+.info-post-container 
+h4,
+p {
+    margin: 9px;
+}
+
+.post a{
+    text-decoration: none;
+    color: white;
+    border: none;
+    background: none;
+    padding: 26px;
+    font-size: 16px;
+}
+
+.post a:hover{
+    border: 1px solid black;
+    color: #2AFCDD;
+    cursor:pointer;
+}
+
+.post-info{
+    display: flex;
+}
+
+
+.forum-feed-buttons{
+    margin: 30px 90px;
+}
+
+.write-comment-button{
+
+}
+
+.comment{
+    display: flex;
+    background-color: #a7b1b7;
+    margin: 16px;
+    border-start-start-radius: 20% ;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 18px;
+}
+
+
+.comment h3{
+    color: gold;
+    margin: 0
+}
+
+.comment div{
+    max-width: 1000px;
+}
+
+.comment p{
+    color: black;
+    flex-basis: 80%;
+    justify-content: left;
+}
+
+.commenting-text{
+
+}

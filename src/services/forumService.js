@@ -9,4 +9,17 @@ function getAllPosts(){
     return firebase.db.collection('forumposts').get()
 }
 
-export { addPost, getAllPosts}
+function getPost(id){
+    return firebase.db.collection('forumposts').doc(id).get()
+}
+
+function addComment(data){
+    return firebase.db.collection('forumposts').doc(data.id).update(data)
+}
+
+
+export { addPost, 
+    getAllPosts,
+    getPost,
+    addComment,
+ }

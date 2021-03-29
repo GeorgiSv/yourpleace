@@ -32,7 +32,7 @@ class CreatePost extends Component{
     componentDidMount(){
 
     }
-    
+
     handleChange(event){
         let post = this.state.post
         post[event.target.name] = event.target.value;
@@ -45,12 +45,12 @@ class CreatePost extends Component{
 
         let post = this.state.post;
         
-        if(post.header === "" || post.header.length < 3)
+        if(post.title === "" || post.title.length < 3)
         {
             this.setState({error: "Header should not be empty or less than 3 symbols."})
             return;
         }
-        else if(post.description === "" || post.description.length < 3){
+        else if(post.text === "" || post.text.length < 3){
             this.setState({error: "Description should not be empty or less than 5 symbols."})
             return;
         }
@@ -83,19 +83,19 @@ class CreatePost extends Component{
                 <h1 className="error-message">{this.state.error}</h1>
                     <label>Title</label>
                     <input type="text"
-                           name = "header" 
+                           name = "title" 
                            value={this.state.title}
                            onChange={this.handleChange}></input>
 <br/>
                     <label>Description</label>
                     <input type="text"
-                           name = "description"
+                           name = "text"
                            value={this.state.text}
                            onChange={this.handleChange}></input>
 <br/>
                     <label>Tags</label>
                     <input type="text"
-                           name = "movieTitle"
+                           name = "tags"
                            value={this.state.tags}
                            onChange={this.handleChange}></input>
 <br/>

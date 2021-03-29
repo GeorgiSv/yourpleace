@@ -2,6 +2,7 @@ import { Route, Link, Switch } from 'react-router-dom';
 import { Component } from 'react'
 
 import * as firebase from '../src/services/firebase.js'
+import * as userService from '../src/services/usersService.js'
 
 import './App.css';
 import Header from './components/Header.js'
@@ -32,6 +33,7 @@ class App extends Component {
     firebase.auth.onAuthStateChanged((user) => {
       if (user) {
         this.setState({ loggedIn: true, user })
+
         localStorage.setItem('email', user.email)
         localStorage.setItem('isLogged', true)
         localStorage.setItem('uid', user.uid)

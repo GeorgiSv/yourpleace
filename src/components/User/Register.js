@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Redirect } from "react-router";
+import { Redirect, useHistory } from "react-router-dom";
 import  * as userService from "../../services/usersService.js"
 
 class Register extends Component {
@@ -8,7 +8,6 @@ class Register extends Component {
 
         this.state = {
                 error:"",
-                isSuccess: false
             }
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -17,10 +16,8 @@ class Register extends Component {
     handleSubmit(event){
         event.preventDefault()
 
-        if(event.target.username.value === "" 
-        || event.target.email.value === ""
-        || event.target.password.value === ""
-        || event.target.username.value.length < 3 
+        if( event.target.email.value === ""
+        || event.target.password.value === "" 
         || event.target.email.value.length < 3
         || event.target.password.value.length < 3)
         {
@@ -31,29 +28,27 @@ class Register extends Component {
         if(event.target.password.value !==  event.target.confirmPassword.value)
         {
             this.setState({error: "Passwords do not match! PLease try again!"})
-            console.log("Password: " + event.target.username.value)
             console.log("ConfirmPassword: " + event.target.confirmPassword.value)
             return;
         }
 
         let user = {
-            username: event.target.username.value,
             email: event.target.email.value.trim(),
             password: event.target.password.value,
             registeredDate: new Date().toLocaleString(),
         }
-       
+
         userService.register(user)
-                   .then((res) => this.setState({isSuccess: true}))
+                   .then((res) => {
+                       useHistory().push('/')
+                    })
                    .catch((error) =>{
+                       console.log(error)
                        this.setState({
                            isSuccess: false,
                            error: "Error occured during processing the request."})
                    });
-
-        if (this.state.isSuccess) {
-            userService.addUserToCollection(user)
-        }
+                   
     }
     
     render() {
@@ -65,19 +60,10 @@ class Register extends Component {
             padding: 30,
         }
 
-        if (this.state.isSuccess) {
-            return <Redirect to="/forum/createpost"/>
-        }
-
         return (
         <section style={style} className="section-wrapper">
             <form onSubmit={this.handleSubmit.bind(this)}>
                <h1 className="error-message">{this.state.error}</h1>
-                <label htmlFor="username">Username</label>
-                <input type="text"
-                    id="username"
-                    name="username"></input>
-                <br />
                 <label htmlFor="email">Email</label>
                 <input type="email"
                     name="email"

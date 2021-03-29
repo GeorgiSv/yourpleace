@@ -1,4 +1,5 @@
 import * as firebase from './firebase.js'
+import modifier from '../utils.js'
 
 function register(user){
     return firebase.auth.createUserWithEmailAndPassword(user.email, user.password)
@@ -12,25 +13,8 @@ function logout(){
     return firebase.auth.signOut()
 }
 
-function addUserToCollection(user){
-    return firebase.db.collection('users').add(user)
-}
-
-function addUserMovies(data){
-        return firebase.db.collection('users').add(data)
-}
-
-
-function getUserMovies(data){
-    return firebase.db.collection('users').get()
-}
-
-
-
 export { 
     register,
     login,
-    logout,
-    getUserMovies, 
-    addUserMovies, 
-    addUserToCollection}
+    logout
+    }

@@ -1,11 +1,16 @@
 import { Component } from "react";
 import './SingleArticle.css'
+import * as userService from '../../services/usersService.js'
 
 class SingleArticle extends Component{
 
     constructor(props){
         super(props)
 
+    }
+
+    addToAlreadyWatched(){
+       
     }
     
     render(){
@@ -28,15 +33,9 @@ class SingleArticle extends Component{
                         </article>
                         <p className='description'>{this.props.article.overview}</p>
                         <div className='movie-buttons-wrapper'>
-                            <a href='#'>
-                                Already watched?
-                            </a>
-                            <a href='#'>
-                                Add to favorites
-                            </a>
-                            <a href='#'>
-                                Push to whatch 
-                            </a>
+                            <button onClick={() => this.checkCommunity()}>
+                            Share you criticism for this movie
+                            </button>
                         </div>
                     </div>
             </article>

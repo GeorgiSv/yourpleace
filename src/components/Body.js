@@ -12,6 +12,7 @@ import Search from "./Movies/Search.js"
 
 import CreatePost from './Forum/CreatePost.js'
 import RecentPosts from './Forum/RecentPosts.js'
+import FullPost from './Forum/FullPost.js'
 
 import observer from '../components/Tools/observer.js'
 
@@ -33,6 +34,7 @@ class Body extends Component {
                         <Route path="/explore/search" component={Search} />
                         <Route path="/forum/createpost" component={() => <CreatePost user={this.props.user} />} />
                         <Route path="/forum/recentposts" component={RecentPosts} />
+                        <Route path="/forum/post/:postId" component={FullPost} />
                     </Switch>
 
                 </main>
