@@ -68,24 +68,26 @@ class FullPost extends Component {
     render() {
 
         return (
-            <article className="post">
+            <article className="">
 
                 {/* {Post details} */}
-                <h2>{this.state.post.title}</h2>
-                <div className="info-post-container">
-                  <div className="post-info">
-                  <h4>Author: <span>{this.state.post.author}</span></h4>
-                    <p>{this.state.post.datetime}</p>
-                  </div>
-                    <p>{this.state.post.text}</p>
-                </div>
+                <article className ="main-post-info">
+                    <h2>{this.state.post.title}</h2>
+                    <div className="info-post-container">
+                        <div className="post-info">
+                            <h4>Author: <span>{this.state.post.author}</span></h4>
+                            <p>{this.state.post.datetime}</p>
+                        </div>
+                        <p>{this.state.post.text}</p>
+                    </div>
+                </article>
 
                 {/* {Comments...} */}
-                <h2 style={{textAlign: "left", margin: 7}}>Comments</h2>
+                <h2 style={{ textAlign: "left", margin: 7 }}>Comments</h2>
                 {this.state.comments.map((el, i) =>
 
                     <article key={el.id} className="comment">
-                      <p>{el.text}</p>
+                        <p>{el.text}</p>
                         <div className="comment-info">
                             <h3>{el.author}</h3>
                             <span>{el.date}</span>
@@ -98,7 +100,7 @@ class FullPost extends Component {
                 {/* {Creating comment} */}
 
                 <form onSubmit={this.onWriteCommentClick} id="createComment" >
-                    <textarea type="text" name="commentText" className="commenting-text"/>
+                    <textarea type="text" name="commentText" className="commenting-text" />
                     <button className="write-comment-button" type="submit">
                         Write comment
                     </button>

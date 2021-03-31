@@ -7,7 +7,7 @@
 main{
     background-color: #fbfbfb30; 
     flex-basis: 80%;
-    
+    overflow: auto;
     text-align: center;
 }
 

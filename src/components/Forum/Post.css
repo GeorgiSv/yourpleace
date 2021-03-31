@@ -5,21 +5,37 @@
 }
 
 .post{
-    border: 1px solid black;
-    color: white;
+    color: black;
+    margin: 12px;
+    background-color: #a7b1b7;
+    -webkit-box-shadow: 0px 0px 12px 0px #A7B1B7; 
+    box-shadow: 0px 0px 12px 0px #A7B1B7;
+    border-radius: 8px;
+
 }
 
-.post h3 span{
+.main-post-info{
+    margin: 12px;
+    background-color: #a7b1b7;
+    -webkit-box-shadow: 0px 0px 12px 0px #A7B1B7; 
+    box-shadow: 0px 0px 12px 0px #A7B1B7;
+    border-radius: 8px;
+}
+
+.main-post-info h3 span{
     color: gold;
     right: 0;
 }
 
-.post h2{
+.post h2
+,.main-post-info h2{
     color: #2AFCDD;
 }
 
 .info-post-container{
     display: flex;
+    flex-direction: column;
+    left: 0;
 }
 
 .info-post-container 
@@ -38,8 +54,8 @@ p {
 }
 
 .post a:hover{
-    border: 1px solid black;
-    color: #2AFCDD;
+    /* border: 1px solid black;
+    color: #2AFCDD; */
     cursor:pointer;
 }
 
@@ -47,13 +63,39 @@ p {
     display: flex;
 }
 
+.post-info h4 span{
+    color: gold;
+}
 
 .forum-feed-buttons{
-    margin: 30px 90px;
+}
+
+.forum-feed-buttons a{
+    border: none;
+    color: white;
+    padding: 9px 13px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 9px 13px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+    background-color: #333c47;
+}
+
+.forum-feed-buttons a:hover{
+    background-color: #2AFCDD;
+    color: black;
 }
 
 .write-comment-button{
 
+}
+
+.comment-info{
+    border-left: 1px solid black;
 }
 
 .comment{
@@ -64,8 +106,8 @@ p {
     align-items: center;
     box-sizing: border-box;
     padding: 18px;
+    overflow-wrap: anywhere;
 }
-
 
 .comment h3{
     color: gold;
@@ -82,6 +124,29 @@ p {
     justify-content: left;
 }
 
-.commenting-text{
+form{
+}
 
+.commenting-text{
+    height:60px;
+    width: 80%;
+    resize: vertical;
+    margin: 2px auto;
+    display: block;
+}
+
+form button{
+    display: inline-block;
+    padding: 15px 25px;
+    margin: 11px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: black;
+    background-color: #2AFCDD;
+    border: none;
+    border-radius: 11px;
+    box-shadow: 0 9px #999;
 }
