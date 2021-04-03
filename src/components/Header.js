@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import './Header.css';
-import { Route, Link, Switch } from 'react-router-dom';
+import { Route, Link, Switch, useHistory } from 'react-router-dom';
 import * as firebase from '../services/firebase.js'
 import * as userService from '../services/usersService.js'
 
@@ -10,7 +10,10 @@ class Header extends Component {
     }
 
     handleClick(){
-        userService.logout();
+        userService.logout()
+        .then((res) => {
+            
+        });
         console.log("Logging out...")
     }
 
@@ -22,7 +25,7 @@ class Header extends Component {
                     <Link to='/' className='logo'><h1>YOURPLASE</h1></Link>
                     <nav>
                         <ul className='navigation'>
-                            <Link to="/explore/whatsnew">
+                            <Link to="/explore/trending">
                                 <li className='navigation-element'>
                                     Explore
                              </li>

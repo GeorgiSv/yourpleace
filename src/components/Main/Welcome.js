@@ -70,8 +70,8 @@ class Welcome extends Component {
                             <Link style={articleLinks} to="/user/profile">
                                 <span>Profile</span>
                             </Link>
-                            <Link style={articleLinks} to="/explore/whatsnew">
-                                <span>WhatsNew</span>
+                            <Link style={articleLinks} to="/explore/trending">
+                                <span>Explore</span>
                             </Link>
                             <Link style={articleLinks} to="/forum/recentposts">
                                 <span>Recent posts</span>

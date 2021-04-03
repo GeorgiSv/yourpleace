@@ -13,6 +13,11 @@ function logout(){
     return firebase.auth.signOut()
 }
 
+
+// function logout(){
+//     return firebase.db.collection("userDetails").
+// }
+
 export { 
     register,
     login,

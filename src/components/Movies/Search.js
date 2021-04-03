@@ -2,6 +2,7 @@ import { Component } from "react";
 
 import SingleArticle from './SingleArticle.js'
 import moviesService from '../../services/dailyArticlesGetter.js'
+import './Search.css'
 
 class Search extends Component {
     constructor() {
@@ -40,7 +41,7 @@ class Search extends Component {
         if (!(this.state.results === [])) {
            
             return (<section >
-    <h1 className="error">{this.state.error}</h1>
+            <h1 className="error">{this.state.error}</h1>
                 <form onSubmit={this.onSubmit}>
                     <input type="text"
                         name="query"
@@ -57,10 +58,13 @@ class Search extends Component {
                 </article>
             </section>);
         }
-        return (<section >
+
+
+        return (<section className="search-section">
             <h1 className="error">{this.state.error}</h1>
             <form onSubmit={this.onSubmit}>
                 <input type="text"
+                    className="search-input"
                     name="query"
                     value={this.state.query}
                     onChange={this.onChangeSearch}></input>

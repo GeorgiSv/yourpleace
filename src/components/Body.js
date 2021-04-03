@@ -3,10 +3,7 @@ import { Route, Link, Switch } from 'react-router-dom';
 
 import './Body.css';
 
-import WhatsNew from './Main/WhatsNew.js'
-
-import TrendWeeklyMoviesFeed from './Movies/TrendWeeklyMoviesFeed.js'
-import TrendDayilyMoviesFeed from './Movies/TrendDayilyMoviesFeed.js'
+import Trending from './Movies/Trending.js'
 import PopularMoviesFeed from './Movies/PopularMoviesFeed.js'
 import Search from "./Movies/Search.js"
 
@@ -17,7 +14,7 @@ import FullPost from './Forum/FullPost.js'
 import observer from '../components/Tools/observer.js'
 
 class Body extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
 
     }
@@ -27,9 +24,9 @@ class Body extends Component {
             <div className='body-wrapper section-wrapper'>
                 <main className=''>
                     <Switch>
-                        <Route path="/explore/whatsnew" component={WhatsNew} />
-                        <Route path="/explore/weeklytrends" component={TrendWeeklyMoviesFeed} />
-                        <Route path="/explore/dayilytrends" component={TrendDayilyMoviesFeed} />
+                        <Route path="/explore/trending" component={Trending} />
+                        {/* <Route path="/explore/weeklytrends" component={TrendWeeklyMoviesFeed} />
+                        <Route path="/explore/dayilytrends" component={TrendDayilyMoviesFeed} /> */}
                         <Route path="/explore/popular" component={PopularMoviesFeed} />
                         <Route path="/explore/search" component={Search} />
                         <Route path="/forum/createpost" component={() => <CreatePost user={this.props.user} />} />
@@ -42,18 +39,8 @@ class Body extends Component {
                     <article className='side-top-wrapper'>
                         <ul className='sidebar-navigation'>
                             <li className='sidebar-navigation-element'>
-                                <Link to="/explore/whatsnew">
-                                    What's new?
-                                </Link>
-                            </li>
-                            <li className='sidebar-navigation-element'>
-                                <Link to="/explore/weeklytrends">
-                                    Weekly Trending movies
-                                </Link>
-                            </li>
-                            <li className='sidebar-navigation-element'>
-                                <Link to="/explore/dayilytrends">
-                                    Daily Trending movies
+                                <Link to="/explore/trending">
+                                    Trendings
                                 </Link>
                             </li>
                             <li className='sidebar-navigation-element'>
@@ -69,22 +56,18 @@ class Body extends Component {
                         </ul>
                     </article>
                     <article className='side-bottom-wrapper forum-navigation'>
-                        <ul>
-                            <Link to="/forum/recentposts">
-                                <li>
+                        <ul className='sidebar-navigation'>
+                            <li className="sidebar-navigation-element">
+                                <Link to="/forum/recentposts">
                                     Recent Posts
-                                    </li>
                             </Link>
-                            <Link to="/forum/createpost">
-                                <li>
+                            </li>
+                            <li className="sidebar-navigation-element">
+                                <Link to="/forum/createpost">
+
                                     Create Posts
-                                    </li>
                             </Link>
-                            <Link to="/forum/createpost">
-                                <li>
-                                    Create Posts
-                                    </li>
-                            </Link>
+                            </li>
                         </ul>
                     </article>
                 </aside>

@@ -47,7 +47,7 @@ class Login extends Component {
         }
 
         if (this.state.isSuccess) {
-            return <Redirect to="/explore/whatsnew" />
+            return <Redirect to="/explore/trending" />
         }
 
         return (

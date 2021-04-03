@@ -1,23 +1,10 @@
 .article-container{
     padding: 10px;
     display: flex;
-    
+    border-bottom: 1px solid black;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
 }
-
-/* .article-container::after{
-    content: '';
-    width: 230px;
-    height: 10px;
-    background-color: black;
-} */
-
-/* .article-container img::after{
-    content: '';
-    width: 10px;
-    height: 260px;
-    background-color: black;
-} */
-
 
 .article-info-wrapper {
     flex-basis: 80%;
@@ -27,6 +14,7 @@
 .article-info-wrapper h1{
     font-size: 29px;
     border-bottom: 2px solid black;
+    color:gold;
 }
 
 .mini-info-wrapper{
@@ -34,21 +22,55 @@
     justify-content: space-between;
 }
 
-.movie-buttons-wrapper{
-   display: flex;
-   margin-top: 99px;
+.mini-info-wrapper p{
+    padding: 16px;
+    -webkit-box-shadow: 0px 6px 15px -2px #FFFFFF; 
+    box-shadow: 0px 6px 15px -2px #FFFFFF;
+    border-radius: 4px;
+}
+
+.description{
+    padding: 9px;
+    -webkit-box-shadow: 0px 6px 15px -2px #FFFFFF; 
+    box-shadow: 0px 6px 15px -2px #FFFFFF;
+    border-radius: 4px;
+}
+
+.tagline span{
+    
+    font-style: italic;
+    color: #2afcdd;
 }
 
 .movie-buttons-wrapper button{
+    display: inline-block;
+    border-radius: 4px;
+    background-color: gold;
     border: none;
-    background: none;
-    padding: 26px;
-    color: black;
-    font-size: 16px;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 2px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
 }
 
 .movie-buttons-wrapper button:hover{
-  border: 1px solid black;
-  color: #2AFCDD;
-  cursor:pointer;
+    padding-right: 25px;
+}
+
+.movie-buttons-wrapper button:hover ::after{
+    opacity: 1;
+    right: 0;
+}
+
+.article-link-buttons{
+    display: flex;
+    justify-content: center;
+}
+
+.article-link-buttons button{
+    color: black;
 }

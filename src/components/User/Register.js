@@ -40,6 +40,7 @@ class Register extends Component {
 
         userService.register(user)
                    .then((res) => {
+                       console.log(res)
                        useHistory().push('/')
                     })
                    .catch((error) =>{

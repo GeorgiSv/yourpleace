@@ -1,0 +1,11 @@
+
+.search-input {
+    width: 30%;
+    padding: 20px;
+    border-radius: 8px;
+    font-size: 20px;
+  }
+
+.search-section form{
+    border-bottom: 1px solid black;
+}

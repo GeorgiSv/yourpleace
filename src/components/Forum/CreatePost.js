@@ -95,7 +95,7 @@ class CreatePost extends Component{
 <br/>
                     <label>Tags</label>
                     <input type="text"
-                           name = "tags"
+                           name = "movieTitle"
                            value={this.state.tags}
                            onChange={this.handleChange}></input>
 <br/>
