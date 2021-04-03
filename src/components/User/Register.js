@@ -41,6 +41,17 @@ class Register extends Component {
         userService.register(user)
                    .then((res) => {
                        console.log(res)
+
+                       let userData = {
+                           uid: res.user.uid,
+                           email: user.email, 
+                           registeredDate: user.registeredDate,
+                           watchList: [],
+                           watchedList: [],
+                           forumPosts: []}
+
+                        console.log(userData)
+                       userService.generateUserCollection(userData);
                        useHistory().push('/')
                     })
                    .catch((error) =>{

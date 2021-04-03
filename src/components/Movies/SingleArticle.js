@@ -1,33 +1,62 @@
 import { Component } from "react";
 import './SingleArticle.css'
 import movieService from '../../services/dailyArticlesGetter.js'
-import userService from '../../services/usersService.js'
+import * as userService from '../../services/usersService.js'
+
+const pictureMainPath = 'https://image.tmdb.org/t/p/w500/';
 
 class SingleArticle extends Component {
 
     constructor(props) {
         super(props)
 
-        this.state = { moreInfo: null }
+        this.state = {
+            moreInfo: null,
+            userDetails: null
+        }
 
         this.moreInfo = this.moreInfo.bind(this);
         this.addToWatchList = this.addToWatchList.bind(this);
         this.markAsWatched = this.markAsWatched.bind(this);
     }
 
-    moreInfo() {
-        movieService.getMovieDetails(this.props.article.id)
-            .then(res => {
-                console.log(res)
-                this.setState({ moreInfo: res })
-            })
+    async componentDidMount() {
+        let userDetails = await userService.getUserFromCollection(localStorage.getItem("uid"));
+        this.setState({ userDetails })
     }
 
-    addToWatchList(){
+    async moreInfo() {
+        let res = await movieService.getMovieDetails(this.props.article.id);
+        this.setState({ moreInfo: res })
     }
 
-    markAsWatched(){
 
+    async addToWatchList() {
+        if (!this.state.userDetails) {
+            return;
+        }
+
+        let userDetails = this.state.userDetails
+        userDetails.watchList.push({
+            title: this.props.article.original_title,
+            moviePicture: pictureMainPath + this.props.article.poster_path
+        })
+
+        await userService.updateUser(userDetails)
+    }
+
+    async markAsWatched() {
+        if (!this.state.userDetails) {
+            return;
+        }
+
+        let userDetails = this.state.userDetails
+        userDetails.watchedList.push({
+            title: this.props.article.original_title,
+            moviePicture: pictureMainPath + this.props.article.poster_path
+        })
+
+        await userService.updateUser(userDetails)
     }
 
     render() {
@@ -35,7 +64,7 @@ class SingleArticle extends Component {
 
         return (
             <article className='article-container'>
-                <img src={'https://image.tmdb.org/t/p/w500/' + this.props.article.poster_path}>
+                <img src={pictureMainPath + this.props.article.poster_path}>
                 </img>
                 <div className='article-info-wrapper'>
                     <h1>{this.props.article.original_title}</h1>

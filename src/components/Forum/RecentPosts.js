@@ -19,7 +19,6 @@ class RecentPosts extends Component{
     componentDidMount(){
         forumService.getAllPosts()
             .then(res => {
-                console.log(res.docs.map(modifier))
                     this.setState(() => ({posts: res.docs.map(modifier)}))
             })
     }
