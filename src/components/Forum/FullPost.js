@@ -71,15 +71,15 @@ class FullPost extends Component {
             <article className="">
 
                 {/* {Post details} */}
-                <article className ="main-post-info">
+                <article className="internal-post">
                     <h2>{this.state.post.title}</h2>
-                    <div className="info-post-container">
-                        <div className="post-info">
+                    <article className="post-wrapper-main">
+                        <div className="info-post-container">
                             <h4>Author: <span>{this.state.post.author}</span></h4>
                             <p>{this.state.post.datetime}</p>
                         </div>
-                        <p>{this.state.post.text}</p>
-                    </div>
+                        <p className="post-text-container">{this.state.post.text}</p>
+                    </article>
                 </article>
 
                 {/* {Comments...} */}
