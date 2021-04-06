@@ -1,21 +1,11 @@
 import { Component } from "react";
 import { Route, Link, Switch } from 'react-router-dom';
+import { UserContext } from '../UserProvider.js';
 
 class Welcome extends Component {
     constructor(props) {
         super(props)
 
-        this.state = {
-            userEmail: "",
-            uid: ""
-        }
-
-    }
-
-    componentDidMount() {
-        this.setState({
-            userEmail: localStorage.getItem("email"),
-            uid: localStorage.getItem("uid")})
     }
 
     render() {
@@ -64,9 +54,9 @@ class Welcome extends Component {
                     <p>JUST YOURPLACE</p>
                 </article>
                 <article>
-                    {this.state.userEmail ?
+                    {this.context.user ?
                         <>
-                            <p>Hi, {this.state.userEmail}</p>
+                            <p>Hi, {this.context.user.email}</p>
                             <Link style={articleLinks} to="/user/profile">
                                 <span>Profile</span>
                             </Link>
@@ -96,5 +86,7 @@ class Welcome extends Component {
         </section>);
     }
 }
+
+Welcome.contextType = UserContext
 
 export default Welcome

@@ -3,10 +3,16 @@ import './Header.css';
 import { Route, Link, Switch, useHistory } from 'react-router-dom';
 import * as firebase from '../services/firebase.js'
 import * as userService from '../services/usersService.js'
+import { UserContext } from './UserProvider.js';
 
 class Header extends Component {
     constructor(props) {
         super(props)
+        
+    }
+
+    componentDidMount(){
+        console.log(this.context)
     }
 
     handleClick(){
@@ -35,12 +41,12 @@ class Header extends Component {
                                     About
                             </li>
                             </Link>
-                            {this.props.user
+                            { this.context.user
                                 ?
                                 <>
                                     <Link to="/user/profile">
                                         <li className='navigation-element'>
-                                            {this.props.user.email}
+                                            {this.context.user.email}
                                         </li>
                                     </Link>
                                         <li className='navigation-element'>
@@ -69,5 +75,7 @@ class Header extends Component {
         );
     }
 }
+
+Header.contextType = UserContext
 
 export default Header

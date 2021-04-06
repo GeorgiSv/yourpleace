@@ -27,7 +27,6 @@ class Profile extends Component {
         this.setState({
             userEmail: localStorage.getItem("email"),
             uid: localStorage.getItem("uid"),
-            forumPosts: user.forumPosts
         })
 
     }

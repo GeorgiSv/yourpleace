@@ -40,4 +40,6 @@ class WhatsNew extends Component{
     }
 }
 
+
+
 export default WhatsNew
