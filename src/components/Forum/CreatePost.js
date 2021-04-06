@@ -2,7 +2,7 @@ import { Component } from "react";
 import { Redirect} from 'react-router-dom';
 
 import * as forumService from "../../services/forumService.js"
-
+import * as userService from '../../services/usersService.js'
 
 class CreatePost extends Component{
     constructor(props){
@@ -40,7 +40,7 @@ class CreatePost extends Component{
         this.setState({post})
     }
 
-    handleSubmit(event){
+    async handleSubmit(event){
         event.preventDefault()
 
         let post = this.state.post;
@@ -60,7 +60,12 @@ class CreatePost extends Component{
         post.authorId = this.props.user.uid;
 
         console.log(post)
-        forumService.addPost(this.state.post)
+        await forumService.addPost(this.state.post)
+
+        let userr = await userService.getUserFromCollection(this.props.user.uid)
+        userr.forumPosts.push(post);
+        await userService.updateUser(userr);
+
         this.setState({error: ""})
         this.state.shouldRedirectToREcentPosts = true; 
     }
