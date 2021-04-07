@@ -1,8 +1,9 @@
 import { Component } from "react";
-import { Redirect} from 'react-router-dom';
+import { Redirect, withRouter} from 'react-router-dom';
 
 import * as forumService from "../../services/forumService.js"
 import * as userService from '../../services/usersService.js'
+import { UserContext } from "../UserProvider.js";
 
 class CreatePost extends Component{
     constructor(props){
@@ -23,14 +24,14 @@ class CreatePost extends Component{
                         // }
                         },
                       error: "",
-                      shouldRedirectToREcentPosts: false}
+                      shouldRedirectToREcentPosts: false,
+                    }
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount(){
-
     }
 
     handleChange(event){
@@ -56,13 +57,13 @@ class CreatePost extends Component{
         }
 
         post.datetime = new Date().toLocaleString();
-        post.author = this.props.user.email;
-        post.authorId = this.props.user.uid;
+        post.author = this.context.user.email;
+        post.authorId = this.context.user.uid;
 
-        console.log(post)
-        await forumService.addPost(this.state.post)
+        let response  = await forumService.addPost(this.state.post)
+        post.id = response.id;
 
-        let userr = await userService.getUserFromCollection(this.props.user.uid)
+        let userr = await userService.getUserFromCollection(this.context.user.uid)
         userr.forumPosts.push(post);
         await userService.updateUser(userr);
 
@@ -72,12 +73,11 @@ class CreatePost extends Component{
 
     render(){
 
-        const shouldRedirect = this.state.shouldRedirectToREcentPosts
-        if (shouldRedirect) {
+        if (this.state.shouldRedirectToREcentPosts) {
             return <Redirect to="/forum/recentposts"/>
         }
 
-        if (!this.props.user) {
+        if (this.context.user === null) {
             return <Redirect to="/user/login"/>
         }
 
@@ -93,10 +93,11 @@ class CreatePost extends Component{
                            onChange={this.handleChange}></input>
 <br/>
                     <label>Description</label>
-                    <input type="text"
+                    <textarea type="text"
                            name = "text"
+                           rows = "10"
                            value={this.state.text}
-                           onChange={this.handleChange}></input>
+                           onChange={this.handleChange}></textarea>
 <br/>
                     <label>Tags</label>
                     <input type="text"
@@ -113,4 +114,6 @@ class CreatePost extends Component{
 
 }
 
-export default CreatePost
+CreatePost.contextType = UserContext
+
+export default withRouter(CreatePost)

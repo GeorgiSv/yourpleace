@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import './Header.css';
-import { Route, Link, Switch, useHistory } from 'react-router-dom';
-import * as firebase from '../services/firebase.js'
+import { Link, withRouter  } from 'react-router-dom';
+// import * as firebase from '../services/firebase.js'
 import * as userService from '../services/usersService.js'
 import { UserContext } from './UserProvider.js';
 
@@ -9,18 +9,13 @@ class Header extends Component {
     constructor(props) {
         super(props)
         
+        this.handleClick = this.handleClick.bind(this)
     }
 
-    componentDidMount(){
-        console.log(this.context)
-    }
-
-    handleClick(){
-        userService.logout()
-        .then((res) => {
-            
-        });
-        console.log("Logging out...")
+    async handleClick(){
+        await userService.logout();
+        console.log(this.props.history)
+        this.props.history.push("/")
     }
 
     render() {
@@ -45,13 +40,15 @@ class Header extends Component {
                                 ?
                                 <>
                                     <Link to="/user/profile">
-                                        <li className='navigation-element'>
+                                        <li className='navigation-element nav-username'>
                                             {this.context.user.email}
                                         </li>
                                     </Link>
+                                    <a>
                                         <li className='navigation-element'>
-                                           <button onClick={() => this.handleClick()} >Logout</button>
+                                           <button onClick={this.handleClick} >Logout</button>
                                         </li>
+                                        </a>
                                 </>
                                 :
                                 <>
@@ -78,4 +75,4 @@ class Header extends Component {
 
 Header.contextType = UserContext
 
-export default Header
+export default withRouter(Header)

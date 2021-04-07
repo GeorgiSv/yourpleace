@@ -29,9 +29,28 @@
 
 .user-collections-container{
     display: flex;
-
+    justify-content: space-around;
 }
 
 .user-movie-collections{
     
+}
+
+.profile-collections-container article button{
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #2afcdd;
+    border: none;
+    color: black;
+    text-align: center;
+    font-size: 28px;
+    padding: 2px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.profile-collections-container article button:hover{
+    color: gold;
 }

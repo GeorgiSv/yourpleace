@@ -44,7 +44,21 @@ header{
    color: white;
   }
   
-  .navigation a li{
+ .navigation-element{
     list-style-type: none;
     margin: 9px;
+    transition: all 0.5s;
+  }
+
+  .nav-username{
+    color: gold;
+  }
+  
+  .navigation-element button{
+    font-family: 'Sigmar One', cursive;
+    background-color: #ffd70000;
+    border: none;
+    font-size: 18px;
+    transition: all 0.5s;
+    cursor: pointer;
   }

@@ -1,4 +1,4 @@
-import { Route, Link, Switch } from 'react-router-dom';
+import { Route, withRouter, Switch, Redirect } from 'react-router-dom';
 import { Component } from 'react'
 
 import * as firebase from '../src/services/firebase.js'
@@ -62,6 +62,14 @@ class App extends Component {
             <Route path="/user/login" component={Login} />
             <Route path="/user/register" component={Register} />
             <Route path="/user/profile" component={() => <Profile />} />
+            {/* <Route path="/user/logout" component={() => (
+              firebase.auth.signOut()
+                .then(() =>
+                {
+                  <Redirect to="/"/>
+                })
+                <Redirect to="/"/>
+            }) /> */}
 
             <Body />
 

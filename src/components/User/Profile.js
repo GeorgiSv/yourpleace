@@ -1,20 +1,20 @@
 import { Component } from "react";
-import { Redirect, Link } from "react-router-dom"
+import { withRouter, Redirect, Link } from "react-router-dom"
 import "./Profile.css"
 
 import UserMovieCollection from "./UserMovieCollection.js"
 import movieService from '../../services/dailyArticlesGetter.js'
 import * as userService from '../../services/usersService.js'
 
-import Post from "../Forum/Post.js"
+import {UserContext} from '../UserProvider.js'
+
+import ShortPost from "../Forum/ShortPost.js"
 
 class Profile extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            userEmail: "",
-            uid: "",
             watchList: [],
             forumPosts: []
         }
@@ -22,37 +22,44 @@ class Profile extends Component {
     }
 
     async componentDidMount() {
-        let user = await userService.getUserFromCollection(localStorage.getItem("uid"))
-        console.log(user)
-        this.setState({
-            userEmail: localStorage.getItem("email"),
-            uid: localStorage.getItem("uid"),
-        })
+        if (this.context.user === null) {
+            console.log("heree")
+            return;
+        }
 
+        let user = await userService.getUserFromCollection(this.context.user.uid)
+        console.log(user)
+        this.setState({ forumPosts: user.forumPosts })
+        this.state.forumPosts.forEach(element => {
+            console.log(element)
+        });
     }
 
     async showWatchList() {
         console.log("watchList")
-        let user = await userService.getUserFromCollection(this.state.uid)
+        let user = await userService.getUserFromCollection(this.context.user.uid)
+        console.log(user)
         this.setState({ watchList: user.watchList })
     }
 
     async showWatchedList() {
         console.log("watchedList")
-        let user = await userService.getUserFromCollection(this.state.uid)
+        let user = await userService.getUserFromCollection(this.context.user.uid)
+        console.log(user)
         this.setState({ watchList: user.watchedList })
     }
 
-    async showForumPosts() {
-        // console.log("ForumPosts")
-        // let user = await userService.getUserFromCollection(this.state.uid)
-        // this.setState({ watchList: user.forumPosts })
-    }
+    // async showForumPosts() {
+    //     console.log("ForumPosts")
+    //     let user = await userService.getUserFromCollection(this.context.user.uid)
+    //     console.log(user)
+    //     this.setState({ forumPosts: user.forumPosts })
+    // }
 
     render() {
 
-        if (this.state.uid === null) {
-            return <Redirect to="/user/login" />;
+        if (this.context.user === null) {
+            return <Redirect to="/user/login"/>;
         }
 
         const style = {
@@ -63,9 +70,9 @@ class Profile extends Component {
         }
 
         return (<section style={style} className="section-wrapper">
-            <h1 className="username">{this.state.userEmail.split('@')[0]}</h1>
+            <h1 className="username">{this.context.user.email.split('@')[0]}</h1>
             <article className="profile-collections-container">
-                <article>
+                <article >
                     <button onClick={() => this.showWatchedList()}>
                         Watched movies
                     </button>
@@ -92,12 +99,12 @@ class Profile extends Component {
                 <article className="user-movie-collections">
                     {this.state.watchList.length > 0
                         ? this.state.watchList.map((el, i) => <UserMovieCollection key={i} watchElement={el} />)
-                        : <span></span>}
+                        : <div></div>}
                 </article>
 
                 <article className="user-posts-collections">
                     {this.state.forumPosts.length > 0
-                        ? this.state.forumPosts.map((el, i) => <Post key={i} post={el} />)
+                        ? this.state.forumPosts.map((el, i) => <ShortPost key={i} post={el} />)
                         : <span>No created post yet!</span>}
                 </article>
             </section>
@@ -106,4 +113,6 @@ class Profile extends Component {
     }
 }
 
-export default Profile
+Profile.contextType = UserContext
+
+export default withRouter(Profile)

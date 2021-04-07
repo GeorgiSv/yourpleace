@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Redirect, useHistory } from "react-router-dom";
+import { withRouter, useHistory } from "react-router-dom";
 import  * as userService from "../../services/usersService.js"
 
 class Register extends Component {
@@ -52,7 +52,7 @@ class Register extends Component {
 
                         console.log(userData)
                        userService.generateUserCollection(userData);
-                       useHistory().push('/')
+                      this.props.history.push('/')
                     })
                    .catch((error) =>{
                        console.log(error)
@@ -97,4 +97,4 @@ class Register extends Component {
     }
 }
 
-export default Register
+export default withRouter(Register)

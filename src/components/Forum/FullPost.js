@@ -21,7 +21,7 @@ class FullPost extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props.match.params.postId)
+        console.log(this.props.match.params)
         forumService.getPost(this.props.match.params.postId)
             .then((res) => {
                 console.log(modifier(res))
@@ -33,7 +33,6 @@ class FullPost extends Component {
 
     onWriteCommentClick(event) {
         event.preventDefault()
-        console.log(event.target.commentText.value)
 
         if (!event.target.commentText.value) {
             this.setState({ error: "Please at least some text(3) before submit your comment!" })
@@ -86,7 +85,7 @@ class FullPost extends Component {
                 <h2 style={{ textAlign: "left", margin: 7 }}>Comments</h2>
                 {this.state.comments.map((el, i) =>
 
-                    <article key={el.id} className="comment">
+                    <article key={i} className="comment">
                         <p>{el.text}</p>
                         <div className="comment-info">
                             <h3>{el.author}</h3>

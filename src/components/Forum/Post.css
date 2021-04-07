@@ -163,3 +163,8 @@ form button{
     border-radius: 11px;
     box-shadow: 0 9px #999;
 }
+
+.center-post{
+    text-align: center;
+    width: 100%;
+}
