@@ -9,6 +9,8 @@ import * as userService from '../../services/usersService.js'
 import {UserContext} from '../UserProvider.js'
 
 import ShortPost from "../Forum/ShortPost.js"
+import ShortArticle from "../Movies/ShortArticle";
+
 
 class Profile extends Component {
     constructor(props) {
@@ -74,7 +76,7 @@ class Profile extends Component {
             <article className="profile-collections-container">
                 <article >
                     <button onClick={() => this.showWatchedList()}>
-                        Watched movies
+                    Watched list
                     </button>
                 </article>
                 <article>
@@ -98,7 +100,7 @@ class Profile extends Component {
             <section className="user-collections-container">
                 <article className="user-movie-collections">
                     {this.state.watchList.length > 0
-                        ? this.state.watchList.map((el, i) => <UserMovieCollection key={i} watchElement={el} />)
+                        ? this.state.watchList.map((el, i) => <ShortArticle key={i} watchElement={el} />)
                         : <div></div>}
                 </article>
 

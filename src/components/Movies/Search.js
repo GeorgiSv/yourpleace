@@ -32,7 +32,7 @@ class Search extends Component {
         moviesService.search(this.state.query)
         .then(res => {
             console.log(res)
-            this.setState(() => ({results: res.results}))
+            this.setState(() => ({results: res.results, error: ""}))
         });
     }
 
@@ -44,8 +44,10 @@ class Search extends Component {
             <h1 className="error">{this.state.error}</h1>
                 <form onSubmit={this.onSubmit}>
                     <input type="text"
+                        className="search-input"
                         name="query"
                         value={this.state.query}
+                        placeholder="Search.."
                         onChange={this.onChangeSearch}></input>
     
                     <button tpye="submit">Search</button>
@@ -66,6 +68,7 @@ class Search extends Component {
                 <input type="text"
                     className="search-input"
                     name="query"
+                    placeholder="Search.."
                     value={this.state.query}
                     onChange={this.onChangeSearch}></input>
 

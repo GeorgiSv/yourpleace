@@ -1,9 +1,10 @@
 import { Component } from "react";
 import { Redirect } from "react-router";
-import  * as userService from "../../services/usersService.js"
+import * as userService from "../../services/usersService.js"
 
 import observer from '../Tools/observer.js'
 import firebaseObserver from '../Tools/firebaseObserver.js'
+import "./Login.css"
 
 class Login extends Component {
     constructor() {
@@ -17,24 +18,26 @@ class Login extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleSubmit(event) {
+    async handleSubmit(event) {
         event.preventDefault()
-        
+
         let email = event.target.email.value
         let pass = event.target.password.value
 
-        userService.login(email,pass)
-            .then((res) => {
-                console.log(res.user.uid)
-            })
+        if( email === ""|| pass === "" || 
+        email.length < 3 || pass.length < 3)
+        {
+            this.setState({error: "All fields should not be mepty or less than 3 symbols."})
+            return;
+        }
+
+        let response = await userService.login(email, pass)
+            .then((e) => {this.setState({ isSuccess: true })})
             .catch((err) => {
                 console.log("error: " + err.message)
-                this.setState({error: "Email or password does not match! PLease try again!"})
-        });
-        
-        if (this.state.error === "") {
-            this.setState({isSuccess: true})
-        }
+                this.setState({ error: err.message })
+                return;
+            });
     }
 
     render() {
@@ -52,7 +55,31 @@ class Login extends Component {
 
         return (
             <section style={style} className="section-wrapper">
-                <form onSubmit={this.handleSubmit.bind(this)}>
+                 <h1 className="error-message">{this.state.error}</h1>
+                <form onSubmit={this.handleSubmit.bind(this)} style={{ border: "1px solid #ccc",textAlign:"center" }}>
+                    <div className="container">
+                        <h1>Sign Up</h1>
+                        <hr />
+
+                        <label htmlFor="email"><b>Email</b></label>
+                        <input type="email" 
+                            placeholder="Enter Email" 
+                            name="email" 
+                            id='email'
+                            required />
+<br/>
+                        <label htmlFor="password"><b>Password</b></label>
+                        <input type="password" 
+                            placeholder="Enter Password" 
+                            name="password" 
+                            required />
+
+                        <div className="clearfix">
+                            <button type="submit" className="signupbtn">Sign In</button>
+                        </div>
+                    </div>
+                </form>
+                {/* <form onSubmit={this.handleSubmit.bind(this)}>
                     <h1 className="error-message">{this.state.error}</h1>
                     <label htmlFor="email">Email</label>
                     <input type="email"
@@ -65,8 +92,8 @@ class Login extends Component {
                         id="password"></input>
                     <br />
                     <input type='submit' />
-                </form>
-            </section>);
+                </form> */}
+            </section>)
     }
 }
 

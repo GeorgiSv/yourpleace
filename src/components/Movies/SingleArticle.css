@@ -74,3 +74,36 @@
 .article-link-buttons button{
     color: black;
 }
+
+.short-picture{
+    max-width: 60%;
+    margin: 0 9px;
+}
+
+.short-article-container{
+    text-align: center;
+}
+
+.short-article-info-wwrapper{
+    display: flex;
+    justify-content: center;
+}
+
+.short-article-container{
+    border: 1px solid black;
+}
+
+.short-article-container button{
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #2afcdd;
+    border: none;
+    color: black;
+    text-align: center;
+    font-size: 28px;
+    padding: 2px;
+    width: 100%;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 12px;
+}

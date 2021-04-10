@@ -1,9 +1,16 @@
 
 .search-input {
-    width: 30%;
-    padding: 20px;
-    border-radius: 8px;
-    font-size: 20px;
+  width: 80%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  text-align: center;
+  display: block;
+  margin: auto;
+  margin-bottom: 12px;
   }
 
 .search-section form{
