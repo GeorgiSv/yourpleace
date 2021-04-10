@@ -38,3 +38,35 @@ body{
   color: red;
   /* border: 1px solid black; */
 }
+
+.gold-text{
+  color:gold;
+}
+
+.alert{
+  width:50%;
+  margin:10px auto;
+  padding:1px 5px;
+  position:relative;
+  border-radius:5px;
+  box-shadow:0 0 15px 5px #ccc;
+}
+
+.success{
+  background-color: #a8f0c6;
+}
+
+.close{
+  position:absolute;
+  width:30px;
+  height:30px;
+  opacity:0.5;
+  border-width:1px;
+  border-style:solid;
+  border-radius:50%;
+  right:15px;
+  top:25px;
+  text-align:center;
+  font-size:1.6em;
+  cursor:pointer;
+}

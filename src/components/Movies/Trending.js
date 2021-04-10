@@ -49,6 +49,7 @@ class Trending extends Component{
 
                     {this.state.movies.length > 0 ? this.state.movies.map(a => <SingleArticle key={a.id} article={a}/>)
                     : <div></div>}
+                    <h2 style={{margin: 16}}>Choose trending filter ...</h2>
             </article>
         );
     }

@@ -1,11 +1,15 @@
 /* Full-width input fields */
-input[type=text], input[type=password], input[type=email] {
+.create-post-description, input[type=text], input[type=password], input[type=email] {
     width: 50%;
     padding: 15px;
     margin: 5px 0 22px 0;
     display: inline-block;
     border: none;
     background: #f1f1f1;
+  }
+
+  .create-post-description{
+    resize: vertical
   }
   
   input[type=text]:focus, input[type=password]:focus,  input[type=email]:focus {
@@ -55,10 +59,6 @@ input[type=text], input[type=password], input[type=email] {
     content: "";
     clear: both;
     display: table;
-  }
-
-  label{
-      margin-right: 9px;
   }
   
   /* Change styles for cancel button and signup button on extra small screens */

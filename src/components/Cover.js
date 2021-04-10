@@ -1,5 +1,4 @@
 import { Component } from "react";
-import coverPicture from '../universe-cover-photo.jpg'
 import './Cover.css'
 
 class Cover extends Component{

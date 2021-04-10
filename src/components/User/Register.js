@@ -40,8 +40,6 @@ class Register extends Component {
 
         userService.register(user)
                    .then((res) => {
-                       console.log(res)
-
                        let userData = {
                            uid: res.user.uid,
                            email: user.email, 
@@ -49,8 +47,7 @@ class Register extends Component {
                            watchList: [],
                            watchedList: [],
                            forumPosts: []}
-
-                        console.log(userData)
+                           
                        userService.generateUserCollection(userData);
                       this.props.history.push('/')
                     })
@@ -58,7 +55,7 @@ class Register extends Component {
                        console.log(error)
                        this.setState({
                            isSuccess: false,
-                           error: "Error occured during processing the request."})
+                           error: error.message})
                    });
                    
     }
@@ -74,7 +71,43 @@ class Register extends Component {
 
         return (
         <section style={style} className="section-wrapper">
-            <form onSubmit={this.handleSubmit.bind(this)}>
+                         <h1 className="error-message">{this.state.error}</h1>
+                <form onSubmit={this.handleSubmit.bind(this)} style={{ border: "1px solid #ccc",textAlign:"center" }}>
+                    <div className="container">
+                        <h1>Sign Up</h1>
+                        <hr />
+
+                        <label htmlFor="email"><b>Email</b></label>
+                        <br/>
+                        <input type="email" 
+                            placeholder="Enter Email" 
+                            name="email" 
+                            id='email'
+                            required />
+                            
+<br/>
+                        <label htmlFor="password"><b>Password</b></label>
+                        <br/>
+                        <input type="password" 
+                            placeholder="Enter password" 
+                            name="password" 
+                            id='password'
+                            required />
+<br/>
+                        <label htmlFor="confirmPassword"><b>Confirm Password</b></label>
+                        <br/>
+                        <input type="password" 
+                            placeholder="Confirm Password" 
+                            name="confirmPassword" 
+                            required />
+
+                        <div className="clearfix">
+                            <button type="submit" className="signupbtn">Sign In</button>
+                        </div>
+                    </div>
+                </form>
+
+            {/* <form onSubmit={this.handleSubmit.bind(this)}>
                <h1 className="error-message">{this.state.error}</h1>
                 <label htmlFor="email">Email</label>
                 <input type="email"
@@ -92,7 +125,7 @@ class Register extends Component {
                     id="confirmPassword"></input>
                 <br />
                 <input type='submit' />
-            </form>
+            </form> */}
         </section>);
     }
 }

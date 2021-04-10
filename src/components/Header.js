@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import './Header.css';
 import { Link, withRouter  } from 'react-router-dom';
-// import * as firebase from '../services/firebase.js'
 import * as userService from '../services/usersService.js'
 import { UserContext } from './UserProvider.js';
 
@@ -23,7 +22,7 @@ class Header extends Component {
         return (
             <div className='header-wrapper'>
                 <header className='section-wrapper'>
-                    <Link to='/' className='logo'><h1>YOURPLASE</h1></Link>
+                    <Link to='/' className='logo'><h1>YOURPLACE</h1></Link>
                     <nav>
                         <ul className='navigation'>
                             <Link to="/explore/trending">
@@ -40,7 +39,7 @@ class Header extends Component {
                                 ?
                                 <>
                                     <Link to="/user/profile">
-                                        <li className='navigation-element nav-username'>
+                                        <li className='navigation-element gold-text'>
                                             {this.context.user.email}
                                         </li>
                                     </Link>

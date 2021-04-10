@@ -96,6 +96,7 @@ class Profile extends Component {
                 </article>
             </article>
 
+                <hr/>
 
             <section className="user-collections-container">
                 <article className="user-movie-collections">

@@ -2,6 +2,8 @@ import { Component } from "react";
 import './SingleArticle.css'
 import movieService from '../../services/dailyArticlesGetter.js'
 import * as userService from '../../services/usersService.js'
+import { UserContext } from "../UserProvider";
+import Alert from "../shared/Alert";
 
 const pictureMainPath = 'https://image.tmdb.org/t/p/w500/';
 
@@ -12,7 +14,8 @@ class SingleArticle extends Component {
 
         this.state = {
             moreInfo: null,
-            userDetails: null
+            userDetails: null,
+            message: ""
         }
 
         this.moreInfo = this.moreInfo.bind(this);
@@ -21,7 +24,7 @@ class SingleArticle extends Component {
     }
 
     async componentDidMount() {
-        let userDetails = await userService.getUserFromCollection(localStorage.getItem("uid"));
+        let userDetails = await userService.getUserFromCollection(this.context.user.uid);
         this.setState({ userDetails })
     }
 
@@ -29,7 +32,6 @@ class SingleArticle extends Component {
         let res = await movieService.getMovieDetails(this.props.article.id);
         this.setState({ moreInfo: res })
     }
-
 
     async addToWatchList() {
         if (!this.state.userDetails) {
@@ -43,6 +45,7 @@ class SingleArticle extends Component {
         })
 
         await userService.updateUser(userDetails)
+        this.setState({message: "Succsessfuly added to collection!"});
     }
 
     async markAsWatched() {
@@ -57,16 +60,18 @@ class SingleArticle extends Component {
         })
 
         await userService.updateUser(userDetails)
+        this.setState({message: "Succsessfuly added to collection!"}); 
     }
 
     render() {
-        // console.log(this.props.article);
-
         return (
             <article className='article-container'>
                 <img src={pictureMainPath + this.props.article.poster_path}>
                 </img>
                 <div className='article-info-wrapper'>
+                    
+                    {this.state.message ? <Alert message={this.state.message} status="success"/> : <span></span>}
+
                     <h1>{this.props.article.original_title}</h1>
                     <article className='statistics-info-wrapper'></article>
                     <article className='mini-info-wrapper'>
@@ -103,13 +108,11 @@ class SingleArticle extends Component {
                         </div>
                     </article>
                 </div>
-
-
-
-
             </article>
         );
     }
 }
+
+SingleArticle.contextType = UserContext
 
 export default SingleArticle

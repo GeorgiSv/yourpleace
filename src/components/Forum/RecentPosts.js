@@ -27,9 +27,10 @@ class RecentPosts extends Component{
 
         return(
             <section>
-              <h1>Recent Posts</h1>
+              <h1 className="gold-text">Recent Posts</h1>
               <section className="post-wrapper">
-              {this.state.posts.map(p => <Post key={p.id} post={p} />)}
+              {this.state.posts.length >= 0 ? this.state.posts.sort(x => x.date).map(p => <Post key={p.id} post={p} />)
+                :   <h2>No posts yet</h2>}
               </section>
             </section>
 

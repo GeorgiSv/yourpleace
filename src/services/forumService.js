@@ -17,9 +17,15 @@ function addComment(data){
     return firebase.db.collection('forumposts').doc(data.id).update(data)
 }
 
+function updatePost(data){
+    return firebase.db.collection('forumposts').doc(data.id).update(data)
+}
+
+
 
 export { addPost, 
     getAllPosts,
     getPost,
     addComment,
+    updatePost,
  }

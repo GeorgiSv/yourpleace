@@ -16,7 +16,7 @@ header{
   header .logo{
     font-family:'Sigmar One', cursive;
     text-decoration: none;
-    color: black;
+    color: gold;
   }
   
   header .logo:hover{
@@ -50,10 +50,6 @@ header{
     transition: all 0.5s;
   }
 
-  .nav-username{
-    color: gold;
-  }
-  
   .navigation-element button{
     font-family: 'Sigmar One', cursive;
     background-color: #ffd70000;

@@ -1,9 +1,4 @@
-import { Component } from "react";
 import { Link } from 'react-router-dom';
-
-import * as forumService from "../../services/forumService.js"
-import modifier from "../../utils.js"
-
 import "./Post.css"
 
 function ShortPost(props){
@@ -16,6 +11,10 @@ function ShortPost(props){
                         <Link to={"/forum/post/" + props.post.id}>
                             Check
                         </Link>
+
+                        <button>
+                            Delete
+                        </button>
                     </div>
             </article>
         );

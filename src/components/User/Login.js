@@ -62,6 +62,7 @@ class Login extends Component {
                         <hr />
 
                         <label htmlFor="email"><b>Email</b></label>
+                        <br/>
                         <input type="email" 
                             placeholder="Enter Email" 
                             name="email" 
@@ -69,6 +70,7 @@ class Login extends Component {
                             required />
 <br/>
                         <label htmlFor="password"><b>Password</b></label>
+                        <br/>
                         <input type="password" 
                             placeholder="Enter Password" 
                             name="password" 

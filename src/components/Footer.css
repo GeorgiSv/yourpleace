@@ -1,7 +1,16 @@
 footer{
-    background-color: brown;
-    opacity: 0.8;
     text-align: center;
-    padding: 17px;
-    bottom: 0;
+    padding: 10px;
+    position:inherit;
+    bottom:0;
+    width:100%;
+    box-sizing: border-box;
+}
+
+footer hr{
+    max-width: 80%;
+}
+
+footer h2{
+    color: #2AFCDD;
 }

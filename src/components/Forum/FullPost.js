@@ -1,7 +1,7 @@
 import { Component } from "react";
-import { Link } from 'react-router-dom';
 
 import * as forumService from "../../services/forumService.js"
+import * as usersService from "../../services/usersService"
 
 import modifier from "../../utils.js"
 
@@ -31,6 +31,26 @@ class FullPost extends Component {
             })
     }
 
+    async vouteUp() {
+        let post = this.state.post
+        post.votes += 1;
+
+        await forumService.updatePost(post);
+
+        let user = await usersService.getUserFromCollection(post.authorId)
+        let userForumPosts = user.forumPosts
+        userForumPosts.forEach(el => {
+            if (el.id == post.id) {
+                el.votes += 1;
+            }
+        })
+
+        user.forumPosts = userForumPosts;
+        await usersService.updateUser(user)
+
+        this.setState({ post: post})
+    }
+
     onWriteCommentClick(event) {
         event.preventDefault()
 
@@ -46,7 +66,6 @@ class FullPost extends Component {
             text: event.target.commentText.value,
             date: new Date().toLocaleString(),
         }
-        console.log(comment)
 
         let finalPost = this.state.post
         finalPost.comments.push(comment)
@@ -71,9 +90,14 @@ class FullPost extends Component {
 
                 {/* {Post details} */}
                 <article className="internal-post">
-                    <h2>{this.state.post.title}</h2>
+                    <div className="post-header">
+                        <button onClick={() => this.vouteUp()}>VoteUp</button>
+                        <h2>{this.state.post.title}</h2>
+                        <h2>{this.state.post.movieTitle}</h2>
+                    </div>
                     <article className="post-wrapper-main">
                         <div className="info-post-container">
+                            <p>Votes: {this.state.post.votes}</p>
                             <h4>Author: <span>{this.state.post.author}</span></h4>
                             <p>{this.state.post.datetime}</p>
                         </div>
@@ -97,7 +121,6 @@ class FullPost extends Component {
                 <h1 className="error-message">{this.state.error}</h1>
 
                 {/* {Creating comment} */}
-
                 <form onSubmit={this.onWriteCommentClick} id="createComment" >
                     <textarea type="text" name="commentText" className="commenting-text" />
                     <button className="write-comment-button" type="submit">

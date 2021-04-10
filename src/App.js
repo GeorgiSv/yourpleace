@@ -34,20 +34,6 @@ class App extends Component {
     firebase.auth.onAuthStateChanged(userAuth => {
       this.setState({ user: userAuth});
     });
-
-    // firebase.auth.onAuthStateChanged((user) => {
-    //   if (user) {
-    //     this.setState({ loggedIn: true, user })
-
-    //     localStorage.setItem('email', user.email)
-    //     localStorage.setItem('isLogged', true)
-    //     localStorage.setItem('uid', user.uid)
-    //   }
-    //   else {
-    //     this.setState({ loggedIn: false, user: null })
-    //     localStorage.clear();
-    //   }
-    // });
   }
 
   render() {
@@ -62,19 +48,11 @@ class App extends Component {
             <Route path="/user/login" component={Login} />
             <Route path="/user/register" component={Register} />
             <Route path="/user/profile" component={() => <Profile />} />
-            {/* <Route path="/user/logout" component={() => (
-              firebase.auth.signOut()
-                .then(() =>
-                {
-                  <Redirect to="/"/>
-                })
-                <Redirect to="/"/>
-            }) /> */}
-
             <Body />
 
             <Route component={NotFound} />
           </Switch>
+          <Footer />
         </div>
       </UserContext.Provider>
     );
