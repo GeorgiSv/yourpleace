@@ -2,8 +2,6 @@ import { Component } from "react";
 import { withRouter, Redirect, Link } from "react-router-dom"
 import "./Profile.css"
 
-import UserMovieCollection from "./UserMovieCollection.js"
-import movieService from '../../services/dailyArticlesGetter.js'
 import * as userService from '../../services/usersService.js'
 
 import {UserContext} from '../UserProvider.js'

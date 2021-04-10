@@ -2,6 +2,8 @@ import { Component } from "react";
 import moviesService from '../../services/dailyArticlesGetter.js'
 import SingleArticle from './SingleArticle.js'
 import '../Body.css';
+import { UserContext } from "../UserProvider.js";
+import { Redirect } from "react-router";
 
 class Trending extends Component{
     constructor(){
@@ -31,6 +33,10 @@ class Trending extends Component{
 
     render(){
 
+        if (this.context.user === null) {
+            return <Redirect to="/user/login" />
+        }
+
         return(
             <article className ="trending">
                   <article style={{borderBottom: "1px solid black", padding: 9}} className="article-link-buttons">
@@ -55,5 +61,6 @@ class Trending extends Component{
     }
 }
 
+Trending.contextType = UserContext
 
 export default Trending

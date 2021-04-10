@@ -7,6 +7,7 @@ import Post from "./Post.js"
 import './Post.css'
 
 import modifier from "../../utils.js"
+import { UserContext } from "../UserProvider.js";
 
 
 class RecentPosts extends Component{
@@ -25,6 +26,10 @@ class RecentPosts extends Component{
 
     render(){
 
+        if (this.context.user === null) {
+            return <Redirect to="/user/login" />
+        }
+
         return(
             <section>
               <h1 className="gold-text">Recent Posts</h1>
@@ -38,5 +43,7 @@ class RecentPosts extends Component{
     }
 
 }
+
+RecentPosts.contextType = UserContext
 
 export default RecentPosts

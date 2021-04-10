@@ -20,16 +20,17 @@ class ShortArticle extends Component {
             let user = await userService.getUserFromCollection(this.props.uid)
             
             if (this.props.isWachList) {
-                let newCollection = user.watchList.filter(x => x.title != this.props.watchElement.title)
+                let newCollection = user.watchList.filter(x => x.title !== this.props.watchElement.title)
                 user.watchList = newCollection;
 
             } else{
-                let newCollection = user.watchedList.filter(x => x.title != this.props.watchElement.title)
+                let newCollection = user.watchedList.filter(x => x.title !== this.props.watchElement.title)
                 user.watchedList = newCollection;
             }
 
             await userService.updateUser(user);
             this.setState({isRemoved: true})
+
         } catch (error) {
             console.log(error)
         }
@@ -41,7 +42,7 @@ class ShortArticle extends Component {
             this.state.isRemoved ? <div></div> :
             <article className="short-article-container">
                 <article className="short-article-info-wwrapper">
-                    <img className="short-picture" src={this.props.watchElement.moviePicture}>
+                    <img className="short-picture" src={this.props.watchElement.moviePicture} alt="movie-cover">
                     </img>
                 </article>
                 <h1 className="gold-text">{this.props.watchElement.title}</h1>

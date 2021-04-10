@@ -11,12 +11,9 @@ import PopularMoviesFeed from './Movies/PopularMoviesFeed.js'
 import CreatePost from './Forum/CreatePost.js'
 import RecentPosts from './Forum/RecentPosts.js'
 import FullPost from './Forum/FullPost.js'
+import NotFound from "./NotFound";
 
 class Body extends Component {
-    constructor(props) {
-        super(props)
-
-    }
 
     render() {
         return (
@@ -26,11 +23,11 @@ class Body extends Component {
                         <Route path="/explore/trending" component={Trending} />
                         <Route path="/explore/popular" component={PopularMoviesFeed} />
                         <Route path="/explore/search" component={Search} />
-                        <Route path="/forum/createpost" component={() => <CreatePost user={this.props.user} />} />
+                        <Route path="/forum/createpost" component={() => <CreatePost />} />
                         <Route path="/forum/recentposts" component={RecentPosts} />
                         <Route path="/forum/post/:postId" component={FullPost} />
+                        <Route component={NotFound} />
                     </Switch>
-
                 </main>
                 <SideBar />
             </div>

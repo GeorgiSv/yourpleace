@@ -13,7 +13,6 @@ class Header extends Component {
 
     async handleClick(){
         await userService.logout();
-        console.log(this.props.history)
         this.props.history.push("/")
     }
 
@@ -43,7 +42,7 @@ class Header extends Component {
                                             {this.context.user.email}
                                         </li>
                                     </Link>
-                                    <a>
+                                    <a href="">
                                         <li className='navigation-element'>
                                            <button onClick={this.handleClick} >Logout</button>
                                         </li>

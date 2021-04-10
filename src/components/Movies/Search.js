@@ -3,6 +3,8 @@ import { Component } from "react";
 import SingleArticle from './SingleArticle.js'
 import moviesService from '../../services/dailyArticlesGetter.js'
 import './Search.css'
+import { Redirect } from "react-router";
+import { UserContext } from "../UserProvider.js";
 
 class Search extends Component {
     constructor() {
@@ -31,12 +33,15 @@ class Search extends Component {
 
         moviesService.search(this.state.query)
         .then(res => {
-            console.log(res)
             this.setState(() => ({results: res.results, error: ""}))
         });
     }
 
     render() {
+
+        if (this.context.user === null) {
+            return <Redirect to="/user/login" />
+        }
 
         if (!(this.state.results === [])) {
            
@@ -78,5 +83,7 @@ class Search extends Component {
         </section>);
     }
 }
+
+Search.contextType = UserContext
 
 export default Search

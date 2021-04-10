@@ -1,4 +1,4 @@
-import { theMovieDbAPIToken, basePictureURL, baseURL } from "../Constants.js"
+import { theMovieDbAPIToken, baseURL } from "../Constants.js"
 
 function getWeeklyTrendingArticles(){
     return fetch(`${baseURL}trending/movie/week?api_key=${theMovieDbAPIToken}`)

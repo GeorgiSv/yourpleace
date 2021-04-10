@@ -1,8 +1,7 @@
 import { Component } from 'react';
 
 class NotFound extends Component {
-
-   
+    
     render() {
         const style = {
             color: "red"

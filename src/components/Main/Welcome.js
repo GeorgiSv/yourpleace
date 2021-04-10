@@ -1,12 +1,8 @@
 import { Component } from "react";
-import { Route, Link, Switch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { UserContext } from '../UserProvider.js';
 
 class Welcome extends Component {
-    constructor(props) {
-        super(props)
-
-    }
 
     render() {
 
@@ -25,14 +21,6 @@ class Welcome extends Component {
             textAlign: "center",
         }
 
-        const spanStyle = {
-            color: "#2AFCDD"
-        }
-
-        const creditsStyle = {
-            color: "gold"
-        }
-
         const welcomeArticleStyle = {
             display: "flex",
         }
@@ -44,16 +32,27 @@ class Welcome extends Component {
             padding: 20,
         }
 
+        const ulStyle = {
+            marin: 19,
+            padding: 46,
+
+        }
+
+        const leftSideStyle = {
+            marin: 19,
+            padding: 46,
+        }
+
         return (<section style={style} className="about section-wrapper">
             <h1 style={headingStyle}>Welcome to YOURPLACE</h1>
             <article style={welcomeArticleStyle}>
-                <article>
-                    <p>Chheckout movies, articles, forum posts and more all in one</p>
-                    <p>Check us often and find new trening movies and shows</p>
-                    <p>Ask, answer or just share opinion in the forum section</p>
-                    <p>JUST YOURPLACE</p>
-                </article>
-                <article>
+                <ul style={ulStyle}>
+                    <li>Chheckout movies, articles, forum posts and more all in one</li>
+                    <li>Check us often and find new trening movies and shows</li>
+                    <li>Ask, answer or just share opinion in the forum section</li>
+                    <li>JUST YOURPLACE</li>
+                </ul>
+                <article style={leftSideStyle}>
                     {this.context.user ?
                         <>
                             <p>Hi, {this.context.user.email}</p>
@@ -75,9 +74,6 @@ class Welcome extends Component {
                             </Link>
                             <Link style={articleLinks} to="/user/register">
                                 <span>Register</span>
-                            </Link>
-                            <Link style={articleLinks} to="/publiccontent">
-                                <span>Check public content</span>
                             </Link>
                         </>
                     }

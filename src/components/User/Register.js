@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { withRouter, useHistory } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import  * as userService from "../../services/usersService.js"
 
 class Register extends Component {
@@ -47,7 +47,7 @@ class Register extends Component {
                            watchList: [],
                            watchedList: [],
                            forumPosts: []}
-                           
+
                        userService.generateUserCollection(userData);
                       this.props.history.push('/')
                     })

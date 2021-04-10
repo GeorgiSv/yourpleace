@@ -66,10 +66,10 @@ class SingleArticle extends Component {
     render() {
         return (
             <article className='article-container'>
-                <img src={pictureMainPath + this.props.article.poster_path}>
+                <img src={pictureMainPath + this.props.article.poster_path} alt="movie-cover">
                 </img>
                 <div className='article-info-wrapper'>
-                    
+
                     {this.state.message ? <Alert message={this.state.message} status="success"/> : <span></span>}
 
                     <h1>{this.props.article.original_title}</h1>

@@ -1,8 +1,7 @@
-import { Route, withRouter, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { Component } from 'react'
 
 import * as firebase from '../src/services/firebase.js'
-import * as userService from '../src/services/usersService.js'
 
 import {UserContext} from "./components/UserProvider";
 

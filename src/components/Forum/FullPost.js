@@ -1,9 +1,11 @@
 import { Component } from "react";
+import { Redirect } from "react-router";
 
 import * as forumService from "../../services/forumService.js"
 import * as usersService from "../../services/usersService"
 
 import modifier from "../../utils.js"
+import { UserContext } from "../UserProvider.js";
 
 import "./Post.css"
 
@@ -21,10 +23,8 @@ class FullPost extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props.match.params)
         forumService.getPost(this.props.match.params.postId)
             .then((res) => {
-                console.log(modifier(res))
                 let post = modifier(res);
                 this.setState({ post, comments: post.comments })
 
@@ -40,7 +40,7 @@ class FullPost extends Component {
         let user = await usersService.getUserFromCollection(post.authorId)
         let userForumPosts = user.forumPosts
         userForumPosts.forEach(el => {
-            if (el.id == post.id) {
+            if (el.id === post.id) {
                 el.votes += 1;
             }
         })
@@ -69,7 +69,6 @@ class FullPost extends Component {
 
         let finalPost = this.state.post
         finalPost.comments.push(comment)
-        console.log(finalPost)
 
         this.setState({ post: finalPost })
 
@@ -84,6 +83,10 @@ class FullPost extends Component {
     }
 
     render() {
+
+        if (this.context.user === null) {
+            return <Redirect to="/user/login" />
+        }
 
         return (
             <article className="">
@@ -134,5 +137,7 @@ class FullPost extends Component {
     }
 
 }
+
+FullPost.contextType = UserContext
 
 export default FullPost

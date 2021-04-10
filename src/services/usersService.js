@@ -26,27 +26,12 @@ async function getUserFromCollection(uid){
     return collection.filter(x => x.uid === uid)[0]
 }
 
-
 async function updateUser(data){
     
-    let result = await firebase.db.collection('userDetails')
+    await firebase.db.collection('userDetails')
         .doc(data.id)
         .update(data)
 }
-
-// function getWatchList(uid){
-
-//     let collection = await firebase.db.collection('userDetails')
-//         .get()
-//         .then((res) => res.docs.map(el => modifier(el)));
-
-//     return collection.filter(x => x.uid === uid)[0]
-// }
-
-
-// function logout(){
-//     return firebase.db.collection("userDetails").
-// }
 
 export { 
     register,
