@@ -18,37 +18,29 @@ class Profile extends Component {
 
         this.state = {
             watchList: [],
-            forumPosts: []
+            forumPosts: [],
+            isWatchList: null
         }
 
     }
 
     async componentDidMount() {
         if (this.context.user === null) {
-            console.log("heree")
             return;
         }
 
         let user = await userService.getUserFromCollection(this.context.user.uid)
-        console.log(user)
         this.setState({ forumPosts: user.forumPosts })
-        this.state.forumPosts.forEach(element => {
-            console.log(element)
-        });
     }
 
     async showWatchList() {
-        console.log("watchList")
         let user = await userService.getUserFromCollection(this.context.user.uid)
-        console.log(user)
-        this.setState({ watchList: user.watchList })
+        this.setState({ watchList: user.watchList, isWatchList: true })
     }
 
     async showWatchedList() {
-        console.log("watchedList")
         let user = await userService.getUserFromCollection(this.context.user.uid)
-        console.log(user)
-        this.setState({ watchList: user.watchedList })
+        this.setState({ watchList: user.watchedList, isWatchList: false })
     }
 
     // async showForumPosts() {
@@ -84,11 +76,6 @@ class Profile extends Component {
                         Watch list
                     </button>
                 </article>
-                {/* <article>
-                    <button onClick={() => this.showForumPosts()}>
-                        My posts
-                    </button>
-                </article> */}
                 <article>
                     <Link to="/forum/createpost">
                         Share thoughts
@@ -101,7 +88,7 @@ class Profile extends Component {
             <section className="user-collections-container">
                 <article className="user-movie-collections">
                     {this.state.watchList.length > 0
-                        ? this.state.watchList.map((el, i) => <ShortArticle key={i} watchElement={el} />)
+                        ? this.state.watchList.map((el, i) => <ShortArticle key={i} isWachList={this.state.isWatchList} uid={this.context.user.uid} watchElement={el} />)
                         : <div></div>}
                 </article>
 

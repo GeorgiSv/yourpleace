@@ -1,33 +1,51 @@
 import { Component } from "react";
 import './SingleArticle.css'
-import movieService from '../../services/dailyArticlesGetter.js'
 import * as userService from '../../services/usersService.js'
-
-const pictureMainPath = 'https://image.tmdb.org/t/p/w500/';
 
 class ShortArticle extends Component {
 
     constructor(props) {
         super(props)
 
+        this.state = {
+            isRemoved: false
+        }
     }
 
-    handleRemove(){
-        console.log("here")
+    async handleRemove() {
+        
+        console.log("Removing movie from collection..")
+
+        try {
+            let user = await userService.getUserFromCollection(this.props.uid)
+            
+            if (this.props.isWachList) {
+                let newCollection = user.watchList.filter(x => x.title != this.props.watchElement.title)
+                user.watchList = newCollection;
+
+            } else{
+                let newCollection = user.watchedList.filter(x => x.title != this.props.watchElement.title)
+                user.watchedList = newCollection;
+            }
+
+            await userService.updateUser(user);
+            this.setState({isRemoved: true})
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     render() {
 
         return (
+            this.state.isRemoved ? <div></div> :
             <article className="short-article-container">
-                <div className='article-info-wrapper'>
-                    <h1>{this.props.watchElement.title}</h1>
-                </div>
-          <article className="short-article-info-wwrapper">
-             <img className="short-picture" src={this.props.watchElement.moviePicture}>
-                </img>
-          </article>
-          <button onClick={() => this.handleRemove()}>Remove</button>
+                <article className="short-article-info-wwrapper">
+                    <img className="short-picture" src={this.props.watchElement.moviePicture}>
+                    </img>
+                </article>
+                <h1 className="gold-text">{this.props.watchElement.title}</h1>
+                <button onClick={() => this.handleRemove()}>Remove</button>
             </article>
         );
     }

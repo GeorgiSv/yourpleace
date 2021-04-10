@@ -18,7 +18,7 @@ class Login extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    async handleSubmit(event) {
+    handleSubmit(event) {
         event.preventDefault()
 
         let email = event.target.email.value
@@ -31,12 +31,11 @@ class Login extends Component {
             return;
         }
 
-        let response = await userService.login(email, pass)
+        userService.login(email, pass)
             .then((e) => {this.setState({ isSuccess: true })})
             .catch((err) => {
                 console.log("error: " + err.message)
                 this.setState({ error: err.message })
-                return;
             });
     }
 
@@ -81,20 +80,6 @@ class Login extends Component {
                         </div>
                     </div>
                 </form>
-                {/* <form onSubmit={this.handleSubmit.bind(this)}>
-                    <h1 className="error-message">{this.state.error}</h1>
-                    <label htmlFor="email">Email</label>
-                    <input type="email"
-                        name="email"
-                        id="email" ></input>
-                    <br />
-                    <label htmlFor="password">Password</label>
-                    <input type="text"
-                        name="password"
-                        id="password"></input>
-                    <br />
-                    <input type='submit' />
-                </form> */}
             </section>)
     }
 }
